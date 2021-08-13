@@ -32,6 +32,7 @@
                                     <x-adminlte-button class="btn-flat" theme="primary" data-toggle="modal"
                                         data-target="#modificarTipo" icon="fas fa-eye" />
                                 </td>
+                                
                                 <td>
                                     <form action="{{route('tipos.destroy',$tipo)}}" method="POST">
                                         <x-adminlte-button class="btn-flat" type="submit" theme="danger"

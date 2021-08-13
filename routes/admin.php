@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ClienteController;
 use App\Http\Controllers\Admin\MarcaController;
 use App\Http\Controllers\Admin\TipoController;
 use App\Http\Controllers\Admin\ProductoController;
+use App\Http\Controllers\Admin\TallasController;
 
 Route::get('',[HomeController::class,'index']);
 
@@ -27,4 +28,9 @@ Route::get('marcas',[MarcaController::class,'index'])->name('marcas.index');
 Route::post('marcas/guardar',[MarcaController::class,'guardar'])->name('marcas.guardar');
 Route::delete('marcas/elimimar/{marca}',[MarcaController::class,'destroy'])->name('marcas.destroy');
 Route::put('/marcas/guardar/{marca}',[MarcaController::class,'guardarmod'])->name('marcas.guardarmod');
+
+Route::get('tallas',[TallasController::class,'index'])->name('tallas.index');
+Route::post('tallas/guardar',[TallasController::class,'guardar'])->name('tallas.guardar');
+Route::delete('tallas/elimimar/{talla}',[TallasController::class,'destroy'])->name('tallas.destroy');
+Route::put('/tallas/guardar/{talla}',[TallasController::class,'guardarmod'])->name('tallas.guardarmod');
     

@@ -319,6 +319,10 @@ return [
                     'text' => 'Tipos',
                     'url'  => 'admin/tipos',
                 ],
+                [
+                    'text' => 'Tallas',
+                    'url'  => 'admin/tallas',
+                ],
                 
             ],
         ],

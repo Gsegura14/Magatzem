@@ -25,7 +25,6 @@
                     <th>Made In</th>
                     <th></th>
                     <th></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
