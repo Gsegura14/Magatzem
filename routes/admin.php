@@ -33,4 +33,5 @@ Route::get('tallas',[TallasController::class,'index'])->name('tallas.index');
 Route::post('tallas/guardar',[TallasController::class,'guardar'])->name('tallas.guardar');
 Route::delete('tallas/elimimar/{talla}',[TallasController::class,'destroy'])->name('tallas.destroy');
 Route::put('/tallas/guardar/{talla}',[TallasController::class,'guardarmod'])->name('tallas.guardarmod');
-    
+route::get('tallas/producto/{producto}',[TallasController::class,'mostrarTallas'])->name('tallas.select');
+route::post('tallas/productos/{producto}',[TallasController::class,'guardarTallas'])->name('tallasProducto.guardar');

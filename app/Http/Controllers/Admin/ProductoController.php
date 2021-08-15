@@ -66,7 +66,7 @@ class ProductoController extends Controller
 
         $producto->save();
 
-        return redirect()->route('productos.index');
+        return redirect()->route('tallas.select',compact('producto'));
       
 
     }

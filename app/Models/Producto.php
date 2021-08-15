@@ -16,4 +16,9 @@ class Producto extends Model
     public function tipo(){
             return $this->belongsTo('App\Models\Tipo');
     }
+
+    // Relación de muchos a muchos
+    public function tallas(){
+            return $this->belongsToMany('App\Models\Talla');
+    }
 }

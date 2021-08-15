@@ -10,15 +10,21 @@
     <div class="card-body">
         <form action="{{route('productos.guardar')}}" method="post">
             <div class="row">
-                <x-adminlte-input name="modelo" id="modelo" label="Modelo" placeholder="Modelo" fgroup-class="col-md-3"
-                    disable-feedback />
+                <div class="col-md-3">
+                    <x-adminlte-input name="modelo" id="modelo" label="Modelo" placeholder="Modelo"
+                        fgroup-class="" disable-feedback />
 
-                @error('modelo')
-                <x-adminlte-alert theme="danger" title="Error">
-                    {{ $message }}
-                </x-adminlte-alert>
-                @enderror
+                    @error('modelo')
+                    <x-adminlte-alert theme="danger" title="Error">
+                        {{ $message }}
+                    </x-adminlte-alert>
+                    @enderror
+                </div>
+                
+
             </div>
+
+
             <div class="row">
                 <x-adminlte-input name="color" id="color" label="Color" placeholder="Color" fgroup-class="col-md-3"
                     disable-feedback />
@@ -86,8 +92,10 @@
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-3">
-            
-                        <a href="{{route('productos.index')}}"><x-adminlte-button class="btn-flat" label="Cancelar" theme="primary" icon="fa fa-undo" type="button" /></a>
+
+                    <a href="{{route('productos.index')}}">
+                        <x-adminlte-button class="btn-flat" label="Cancelar" theme="primary" icon="fa fa-undo"
+                            type="button" /></a>
 
                     <x-adminlte-button class="btn-flat" label="Reset" theme="danger" icon="fas fa-ban" type="reset" />
                     <x-adminlte-button class="btn-flat" label="Guardar" theme="success" icon="fas fa-lg fa-save"
