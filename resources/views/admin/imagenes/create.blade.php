@@ -17,6 +17,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Subir imagen</button>
                 </form> --}}
+
                 <form action="{{route('imagenes.store')}}"
                 class="dropzone"
                 id="my-awesome-dropzone" method="POST"></form>
@@ -64,7 +65,6 @@ Dropzone.options.myAwesomeDropzone = {
         'X-CSRF-TOKEN' : "{{csrf_token()}}"
     },
   paramName: "imagen", // The name that will be used to transfer the file
-  maxFilesize: 2, // MB
   dictDefaultMessage: 'Arraste una o más imágenes al recuadro para subirlas',
   acceptedFiles: 'image/*',
   maxFiles:5

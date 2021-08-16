@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Imagen;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class ImagenController extends Controller
 {
@@ -40,17 +41,35 @@ class ImagenController extends Controller
 
        //  Formulario normal funcionando perfectamente
 
-        $request->validate([
-            'imagen' => 'required|image|max:2048'
-        ]);
+        // $request->validate([
+        //     'imagen' => 'required|image|max:2048'
+        // ]);
 
-        $imagenes = $request->file('imagen')->store('public/imagenes');
-        $url = Storage::url($imagenes);
+        // $imagenes = $request->file('imagen')->store('public/imagenes');
+        // $url = Storage::url($imagenes);
+
+        // Imagen::create([
+        //     'url' => $url
+        // ]);
+
+            $request->validate([
+                'imagen' => 'required|image'
+            ]);
+
+        $nombre =  $request->file('imagen')->getClientOriginalName();   
+        $ruta = storage_path() . '\app\public\imagenes/' . $nombre;
+        
+        Image::make($request->file('imagen'))
+            ->resize(800, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->save($ruta);
 
         Imagen::create([
-            'url' => $url
+            'url' => '/storage/imagenes/' . $nombre
         ]);
 
+        
 
 
         // Formulario normal funcionando perfectamente
