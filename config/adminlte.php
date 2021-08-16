@@ -326,6 +326,18 @@ return [
                 
             ],
         ],
+        [
+            'text'    => 'Biblioteca',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Imágenes',
+                    'url'  => 'admin/imagenes',
+                ],
+                
+                
+            ],
+        ],
         ['header' => 'labels'],
         [
             'text'       => 'important',

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\MarcaController;
 use App\Http\Controllers\Admin\TipoController;
 use App\Http\Controllers\Admin\ProductoController;
 use App\Http\Controllers\Admin\TallasController;
+use App\Http\Controllers\Admin\ImagenController;
 
 Route::get('',[HomeController::class,'index']);
 
@@ -35,3 +36,12 @@ Route::delete('tallas/elimimar/{talla}',[TallasController::class,'destroy'])->na
 Route::put('/tallas/guardar/{talla}',[TallasController::class,'guardarmod'])->name('tallas.guardarmod');
 route::get('tallas/producto/{producto}',[TallasController::class,'mostrarTallas'])->name('tallas.select');
 route::post('tallas/productos/{producto}',[TallasController::class,'guardarTallas'])->name('tallasProducto.guardar');
+
+Route::post('imagenes',[ImagenController::class,'store'])->name('imagenes.store');
+Route::get('imagenes',[ImagenController::class,'index'])->name('imagenes.index');
+Route::get('imagenes/create',[ImagenController::class,'create'])->name('imagenes.create');
+Route::delete('imagenes/{imagen}',[ImagenController::class,'destroy'])->name('imagenes.destroy');
+Route::put('imagenes/{imagen}',[ImagenController::class,'update'])->name('imagenes.update');
+Route::get('imagenes/{imagen}',[ImagenController::class,'show'])->name('imagenes.show');
+Route::get('imagenes/{imagen}/edit',[ImagenController::class,'edit'])->name('imagenes.edit');
+    

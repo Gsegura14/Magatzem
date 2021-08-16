@@ -60,7 +60,7 @@ class TallasController extends Controller
         if(in_array($talla->id, $request->get('tallas'))){
                 
            $producto->tallas()->attach($talla);
-           return view('admin.layouts.agregarFotoProducto',compact('producto'));      
+           //return view('admin.layouts.agregarFotoProducto',compact('producto'));      
         }
     }
        
