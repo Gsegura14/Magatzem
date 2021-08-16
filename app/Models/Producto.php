@@ -21,4 +21,9 @@ class Producto extends Model
     public function tallas(){
             return $this->belongsToMany('App\Models\Talla');
     }
+
+    // Relación de uno a uno
+    public function imagen(){
+            return $this->hasOne('App\Models\Imagen');
+    }
 }
