@@ -36,6 +36,10 @@ Route::delete('tallas/elimimar/{talla}',[TallasController::class,'destroy'])->na
 Route::put('/tallas/guardar/{talla}',[TallasController::class,'guardarmod'])->name('tallas.guardarmod');
 route::get('tallas/producto/{producto}',[TallasController::class,'mostrarTallas'])->name('tallas.select');
 route::post('tallas/productos/{producto}',[TallasController::class,'guardarTallas'])->name('tallasProducto.guardar');
+route::put('tallas/productos/{producto}',[TallasController::class,'guardarTallasMod'])->name('tallasProducto.guardarMod');
+
+route::get('tallas/producto/{producto}/modificar/{tallas_select}',[TallasController::class,'modificarTallasProducto'])->name('modificarProducto.tallas');
+
 
 Route::post('imagenes',[ImagenController::class,'store'])->name('imagenes.store');
 Route::get('imagenes',[ImagenController::class,'index'])->name('imagenes.index');
@@ -44,4 +48,6 @@ Route::delete('imagenes/{imagen}',[ImagenController::class,'destroy'])->name('im
 Route::put('imagenes/{imagen}',[ImagenController::class,'update'])->name('imagenes.update');
 Route::get('imagenes/{imagen}',[ImagenController::class,'show'])->name('imagenes.show');
 Route::get('imagenes/{imagen}/edit',[ImagenController::class,'edit'])->name('imagenes.edit');
-    
+Route::get('agregar/imagen/{producto}',[ImagenController::class,'agregar_imagen'])->name('agregar.imagenes');
+Route::get('modificar/imagen/{producto}',[ImagenController::class,'modificar_imagen'])->name('modificar.imagen');
+Route::put('update/imagen/{producto}',[ImagenController::class,'updateProductoImagen'])->name('update.imagen');

@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Tipo;
 use App\Models\Marca;
-use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Php;
+use App\Models\Imagen;
+use App\Models\Talla;
+use CreateProductoTallaTable;
+use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
@@ -18,17 +21,18 @@ class ProductoController extends Controller
         return view('admin.productos.index',compact('productos','tipos','marcas'));
     }
 
-    public function verProducto(Producto $producto){
-       
+    public function verProducto(Producto $producto){       
         $tipos = Tipo::all();
         $marcas = Marca::all();
-        return view('admin.productos.verProducto',compact('producto','tipos','marcas'));
+        $imagenes = Imagen::all();
+        return view('admin.productos.verProducto',compact('producto','tipos','marcas','imagenes'));
     }
 
     
     public function nuevo(){
         $tipos = Tipo::all();
         $marcas = Marca::all();
+        
         return view('admin.productos.nuevo',compact('tipos','marcas'));
     }
 
@@ -95,8 +99,19 @@ class ProductoController extends Controller
         $producto->precio_coste = $request->precio_coste;
         $producto->precio_vta = $request->precio_venta;
         $producto->made_in = $madeIn;
-
         $producto->save();
-        return redirect()->route('productos.index');
+        // Inicializamos el Array vacío...
+            // Realizamos consulta para ver qué tallas tiene este producto
+            // Rellenamos un array con las tallas
+            // Lo pasamos a json
+            // Finalmente le pasamos al controlador las tallas disponibles y el producto
+        $tallas_select = [];
+        $tallas = DB::table('producto_talla')->where('producto_id',$producto->id)->get()->toArray();
+        foreach($tallas as $talla){
+            $tallas_select[] = $talla->talla_id;
+        }
+        $tallas_select = json_encode($tallas_select,true);
+        return redirect()->route('modificarProducto.tallas',compact('tallas_select','producto'));
+     
     }
 }

@@ -38,6 +38,7 @@
                     {{$message}}
                 </x-adminlte-alert>
                 @enderror
+
             </div>
             <div class="row">
                 <x-adminlte-input name="descripcion_corta" id="descripcion_corta"
@@ -106,7 +107,9 @@
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-3">
-                    <a href="{{route('productos.index')}}"><x-adminlte-button class="btn-flat" label="Cancelar" theme="primary" icon="fa fa-undo" type="button" /></a>
+                    <a href="{{route('productos.index')}}">
+                        <x-adminlte-button class="btn-flat" label="Cancelar" theme="primary" icon="fa fa-undo"
+                            type="button" /></a>
                     <x-adminlte-button class="btn-flat" label="Guardar" theme="success" icon="fas fa-lg fa-save"
                         type="submit" />
                 </div>

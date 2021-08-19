@@ -334,6 +334,10 @@ return [
                     'text' => 'Imágenes',
                     'url'  => 'admin/imagenes',
                 ],
+                [
+                    'text' => 'Subir imágenes',
+                    'url'  => 'admin/imagenes/create',
+                ],
                 
                 
             ],

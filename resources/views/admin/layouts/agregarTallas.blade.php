@@ -31,8 +31,9 @@
     <div class="card-body">
         <div class="row">
                     <div class="col-6">
-                        <x-adminlte-button class="btn-flat" type="cancel" label="Cancelar" theme="danger"
-                            icon="fa fa-ban" />
+                        <a href="{{route('productos.index')}}">
+                            <x-adminlte-button class="btn-flat" label="Cancelar" theme="primary" icon="fa fa-undo"
+                                type="button" /></a>
                         </div>
                         <div class="col-6">
                         <x-adminlte-button class="btn-flat" type="submit" label="guardar" theme="success"

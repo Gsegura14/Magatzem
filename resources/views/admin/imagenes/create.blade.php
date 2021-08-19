@@ -23,6 +23,9 @@
                 id="my-awesome-dropzone" method="POST"></form>
 
             </div>
+            <div class="row">
+                <div class="col-6 ml-4 mb-2"><a href="{{route('imagenes.index')}}" class="btn btn-primary align-center">Galería</a></div>
+            </div>
         </div>
 
 

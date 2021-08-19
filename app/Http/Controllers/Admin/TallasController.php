@@ -51,20 +51,49 @@ class TallasController extends Controller
     public function mostrarTallas(Producto $producto){
         $tallas = Talla::all();
         return view('admin.layouts.agregarTallas',compact('producto','tallas'));
-        //return $producto."<br> Listado de tallas<br>".$tallas;
+    }
+
+    public function modificarTallasProducto(Producto $producto,$tallas_select){
+        $tallas = Talla::all();
+        if (isset($tallas_select)){
+            return view('admin.layouts.modificarTallasProducto',compact('producto','tallas_select','tallas'));
+        }
+        else{
+            return view('admin.layouts.modificarTallasProducto',compact('producto','tallas'));
+        }
+        return $tallas_select;
+        //
+
     }
 
     public function guardarTallas(Request $request,Producto $producto){
+       if($request->get('tallas')== null){
+        return redirect()->route('agregar.imagenes',compact('producto'));
+       }
         $tallas = Talla::all();
         foreach($tallas as $talla){
-        if(in_array($talla->id, $request->get('tallas'))){
-                
-           $producto->tallas()->attach($talla);
-           //return view('admin.layouts.agregarFotoProducto',compact('producto'));      
+            if(in_array($talla->id, $request->get('tallas'))){
+                $producto->tallas()->attach($talla);
+                return redirect()->route('agregar.imagenes',compact('producto'));
+            }
+
         }
     }
-       
+    public function guardarTallasMod(Request $request,Producto $producto){
+        if($request->get('tallas')== null){
+            
+            return redirect()->route('agregar.imagenes',compact('producto'));
 
+           }
+        $tallas = Talla::all();
+        foreach($tallas as $talla){
+            if(in_array($talla->id,$request->get('tallas'))){
+              $tallas_select[] = $talla->id;  
+                
+            }
+        }
+        $producto->tallas()->sync($tallas_select);
+        return redirect()->route('modificar.imagen',compact('producto')); 
     }
 }
 

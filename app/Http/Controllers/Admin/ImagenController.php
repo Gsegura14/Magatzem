@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Imagen;
+use App\Models\Producto;
+use Faker\Provider\ar_JO\Company;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class ImagenController extends Controller
 {
@@ -17,7 +21,10 @@ class ImagenController extends Controller
      */
     public function index()
     {
-        return view('admin.imagenes.index');
+        $imagenes_producto = Imagen::join('productos','productos.imagen_id','=','imagenes.id')
+            ->select('imagenes.id','imagenes.url','productos.referencia_sugerida')
+            ->get();
+        return view('admin.imagenes.index',compact('imagenes_producto'));
     }
 
     /**
@@ -128,6 +135,30 @@ class ImagenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function agregar_imagen(Producto $producto){
+        $imagenes_producto = Imagen::join('productos','productos.imagen_id','=','imagenes.id')
+            ->select('imagenes.id','imagenes.url','productos.referencia_sugerida')
+            ->get();
+        return view('admin.layouts.agregarImagen',compact('imagenes_producto','producto'));
+
+    }
+
+    public function modificar_imagen(Producto $producto){
+        $imagenes_producto = Imagen::join('productos','productos.imagen_id','=','imagenes.id')
+            ->select('imagenes.id','imagenes.url','productos.referencia_sugerida')
+            ->get();
+        return view('admin.layouts.modificarImagenProducto',compact('imagenes_producto','producto'));
+
+    }
+
+    public function updateProductoImagen(Request $request,Producto $producto){
+        
+        Producto::where('id',$producto->id)->update(['imagen_id'=>$request->radioImagen]);
+        return redirect()->route('productos.index');
+    }
+
+
     public function show($imagen)
     {
         return view('admin.imagenes.show');
