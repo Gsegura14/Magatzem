@@ -10,6 +10,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
+        <h2 class="mb-4">Productos</h2>
         <table class="table table-striped" id="productos">
             <thead>
                 <tr>

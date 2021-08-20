@@ -303,11 +303,24 @@ return [
             ],
         ],
         [
+            'text'    => 'Proveedores',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'url'  => 'admin/proveedores',
+                ],
+                
+                
+                
+            ],
+        ],
+        [
             'text'    => 'productos',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'Todos',
+                    'text' => 'Listado',
                     'url'  => 'admin/productos',
                 ],
                 [

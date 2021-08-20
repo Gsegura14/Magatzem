@@ -10,8 +10,13 @@ class Marca extends Model
     
     use HasFactory;
     
-    //Relación uno a muchos
+    // Relación uno a muchos
     public function productos(){
         return $this->hasMany('App\Models\Producto');
     }
+
+    // Relación de uno a uno
+    public function proveedor(){
+        return $this->hasOne('App\Models\Proveedor');
+}
 }

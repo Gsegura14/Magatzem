@@ -8,10 +8,18 @@ use App\Http\Controllers\Admin\TipoController;
 use App\Http\Controllers\Admin\ProductoController;
 use App\Http\Controllers\Admin\TallasController;
 use App\Http\Controllers\Admin\ImagenController;
+use App\Http\Controllers\Admin\ProveedorController;
 
 Route::get('',[HomeController::class,'index']);
 
 Route::get('clientes',[ClienteController::class,'index'])->name('clientes.index');
+
+Route::get('proveedores',[ProveedorController::class,'index'])->name('proveedor.index');
+Route::get('proveedor/nuevo',[ProveedorController::class,'create'])->name('proveedor.nuevo');
+Route::post('proveedor/guardar',[ProveedorController::class,'store'])->name('proveedor.guardar');
+Route::get('proveedor/modificar/{proveedor}',[ProveedorController::class,'show'])->name('proveedor.ver');
+Route::put('proveedor/modificar/{proveedor}',[ProveedorController::class,'update'])->name('proveedor.update');
+Route::delete('proveedor/eliminar/{proveedor}',[ProveedorController::class,'destroy'])->name('proveedor.destroy');
 
 Route::get('productos',[ProductoController::class,'index'])->name('productos.index');
 Route::get('productos/nuevo',[ProductoController::class,'nuevo'])->name('productos.nuevo');

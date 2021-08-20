@@ -17,7 +17,8 @@ class AddImagenToProductosTable extends Migration
             $table->unsignedBigInteger('imagen_id')->nullable();
             $table->foreign('imagen_id')
             ->references('id')
-            ->on('imagenes');
+            ->on('imagenes')
+            ->onDelete('set null');
         });
     }
 
