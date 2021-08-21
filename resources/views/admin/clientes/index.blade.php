@@ -7,6 +7,7 @@
 @endsection   
 
 @section('content')
+<h1>Clientes</h1>
 <div class="card">
     <div class="card-body">
 <table class="table table-striped" id="clientes">

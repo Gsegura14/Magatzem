@@ -6,9 +6,10 @@
 @stop
 
 @section('content')
+<h1>Proveedores</h2>
 <div class="card">
     <div class="card-body">
-        <h2 class="mb4">Proveedores</h2>
+        
         <table class="table table-striped" id="proveedores">
             <thead>
                 <tr>
