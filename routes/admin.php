@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\ProductoController;
 use App\Http\Controllers\Admin\TallasController;
 use App\Http\Controllers\Admin\ImagenController;
 use App\Http\Controllers\Admin\ProveedorController;
+use App\Http\Controllers\Admin\CabeceraproveedoresController;
+
+
 
 Route::get('',[HomeController::class,'index']);
 
@@ -59,3 +62,10 @@ Route::get('imagenes/{imagen}/edit',[ImagenController::class,'edit'])->name('ima
 Route::get('agregar/imagen/{producto}',[ImagenController::class,'agregar_imagen'])->name('agregar.imagenes');
 Route::get('modificar/imagen/{producto}',[ImagenController::class,'modificar_imagen'])->name('modificar.imagen');
 Route::put('update/imagen/{producto}',[ImagenController::class,'updateProductoImagen'])->name('update.imagen');
+
+Route::get('pedidos/proveedores',[CabeceraproveedoresController::class,'index'])->name('pedidoProveedor.index');
+Route::get('pedido/proveedor/nuevo',[CabeceraproveedoresController::class,'create'])->name('pedidoProveedor.nuevo');
+Route::post('pedido/proveedor/guardar',[CabeceraproveedoresController::class,'store'])->name('pedidoProveedor.guardar');
+Route::get('pedido/proveedor/modificar/{cabecera}',[CabeceraproveedoresController::class,'show'])->name('pedidoProveedor.ver');
+Route::put('pedido/proveedor/modificar/{proveedor}',[CabeceraproveedoresController::class,'update'])->name('pedidoProveedor.update');
+Route::delete('pedido/proveedor/eliminar/{cabecera}',[CabeceraproveedoresController::class,'destroy'])->name('pedidoProveedor.destroy');

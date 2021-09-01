@@ -355,6 +355,22 @@ return [
                 
             ],
         ],
+        [
+            'text'    => 'Pedidos',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Proveedores',
+                    'url'  => 'admin/pedidos/proveedores',
+                ],
+                [
+                    'text' => 'Clientes',
+                    'url'  => '#',
+                ],
+                
+                
+            ],
+        ],
         ['header' => 'labels'],
         [
             'text'       => 'important',

@@ -12,4 +12,8 @@ class Talla extends Model
     public function productos(){
         return $this->belongsToMany('App\Models\Producto');
 }
+
+public function lineapedidos(){
+    return $this->belongsTo('App\Models\lineapedidos');
+}
 }

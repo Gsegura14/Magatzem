@@ -13,39 +13,36 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        
         @livewireStyles
-        
+
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-               
-
+                <script src="{{ mix('js/app.js') }}" defer></script>
 
     </head>
-    <body>
-        @extends('adminlte::page')
-        @section('title', 'Dashboard')
-        
-        @section('content_header')
+    <body class="font-sans antialiased">
+        <x-jet-banner />
+
+        <div class="min-h-screen bg-gray-100">
+            @livewire('navigation-menu')
             
-        @stop
-        
-        @section('content')
-            <p>Welcome to this beautiful admin panel.</p>
-        @stop
-        
-        @section('css')
-            <link rel="stylesheet" href="/css/admin_custom.css">
-            <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-            
-            @stop
-        @section('js')
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
-         
-        @stop  
-    </body>
-       @stack('modals')
-       @livewireScripts
-       
+            <!-- Page Heading -->
+            @if (isset($header))
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
+
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
+        </div>
+
+        @stack('modals')
+
+        @livewireScripts
     </body>
 </html>

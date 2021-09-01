@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'asset_url' => 'public',
+    'asset_url' => "http://localhost/magatzem/public",
 
     /*
     |--------------------------------------------------------------------------
