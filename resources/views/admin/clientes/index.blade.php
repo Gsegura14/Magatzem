@@ -38,16 +38,26 @@
             <td>{{$cliente->DNI}}</td>
             <td>{{$cliente->email}}</td>
             <td>{{$cliente->telefono}}</td>
-            <td><a href="#">Eliminar Cliente</a></td>
-            <td><a href="#">Modificar Cliente</a></td>
+            <td>
+                <form action="{{route('cliente.ver',$cliente)}}" method="GET">
+                    <x-adminlte-button class="btn btn-flat" type="submit" theme="primary" icon="fas fa-eye"></x-adminlte-button>
+                    @csrf
+                </form>
+            </td>
+            <td>
+                <form action="{{route('cliente.destroy',$cliente)}}" method="POST">
+                    <x-adminlte-button class="btn-flat" type="submit" theme="danger" icon="fas fa-trash">
+                    </x-adminlte-button>
+                    @method('delete') @csrf
+                </form>
+            </td>
         </tr>
     @endforeach
 </tbody>   
 </table>
 </div>
 </div>
-    <a href="#">Nuevo Cliente</a>
-    
+    <a href="{{route('cliente.nuevo')}}"><x-adminlte-button class="btn-flat" theme="success" icon="fa fa-user" label="Nuevo"></x-admnilte-button></a>    
 @endsection
 
 @section('js')

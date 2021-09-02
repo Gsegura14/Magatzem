@@ -241,11 +241,11 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
-        [
-            'text' => 'Clientes',
-            'url'  => 'admin/clientes',
+        // [
+        //     'text' => 'Clientes',
+        //     'url'  => 'admin/clientes',
            
-        ],
+        // ],
         [
             'text'        => 'pages',
             'url'         => 'admin/pages',
@@ -300,6 +300,19 @@ return [
                     'text' => 'level_one',
                     'url'  => '#',
                 ],
+            ],
+        ],
+        [
+            'text'    => 'Clientes',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'url'  => 'admin/clientes',
+                ],
+                
+                
+                
             ],
         ],
         [

@@ -16,6 +16,16 @@ use App\Http\Controllers\Admin\CabeceraproveedoresController;
 Route::get('',[HomeController::class,'index']);
 
 Route::get('clientes',[ClienteController::class,'index'])->name('clientes.index');
+Route::get('cliente/nuevo',[ClienteController::class,'create'])->name('cliente.nuevo');
+Route::post('cliente/guardar',[ClienteController::class,'store'])->name('cliente.guardar');
+Route::get('cliente/modificar/{cliente}',[ClienteController::class,'show'])->name('cliente.ver');
+Route::put('cliente/modificar/{cliente}',[ClienteController::class,'update'])->name('cliente.update');
+Route::delete('cliente/eliminar/{cliente}',[ClienteController::class,'destroy'])->name('cliente.destroy');
+
+
+
+
+
 
 Route::get('proveedores',[ProveedorController::class,'index'])->name('proveedor.index');
 Route::get('proveedor/nuevo',[ProveedorController::class,'create'])->name('proveedor.nuevo');
