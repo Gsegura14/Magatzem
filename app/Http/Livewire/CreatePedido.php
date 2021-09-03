@@ -22,10 +22,7 @@ class CreatePedido extends Component
     public $pedido_id;
     public $subtotal;
 
-    protected $rules = [
-        'selectedTalla' => 'required',
-       
-    ];
+   
     
     public function render()
     {

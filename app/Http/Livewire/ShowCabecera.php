@@ -41,12 +41,18 @@ class ShowCabecera extends Component
     //         ->update(['total' => $total]);
     //  }
 
-    public function sumaTotal(){
+    public function sumaTotal($pedido_id){
         $this->total = lineapedidos::where('pedido_id', $this->pedido_id)->get()->sum('total');
-        Cabeceraproveedores::where('id',$this->pedido_id)
+        Cabeceraproveedores::where('id',$pedido_id)
         ->update(['total' => $this->total]);
 
     }
+
+    // public function actualizaTotal($pedido_id){
+    //     $this->total = lineapedidos::where('pedido_id', $this->pedido_id)->get()->sum('total');
+    //     Cabeceraproveedores::where('id',$pedido_id)
+    //     ->update(['total' => $this->total]);
+    // }
      
 
 

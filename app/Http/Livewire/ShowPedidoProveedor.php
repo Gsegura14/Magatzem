@@ -59,6 +59,7 @@ class ShowPedidoProveedor extends Component
         $cantidad = $this->cantidad;
         $precio = $this->precio;
         $this->subtotal = $cantidad * $precio;
+        $this->emit('sumaTotal', $this->pedido_id);
     }
 
     public function addLinea()
@@ -87,17 +88,18 @@ class ShowPedidoProveedor extends Component
         $linea->total = $this->subtotal;
         $linea->talla_id = $this->selectedTalla;
         $linea->save();
-        $pedido_id = $this->pedido_id;
+        //$pedido_id = $this->pedido_id;
 
         
        
-       // $this->emit('actualizaTotal', $pedido_id,$this->total);
+        
         $this->emit('verAddLinea',$this->pedido_id);
-
+        //$this->emit('sumaTotal', $this->pedido_id);
 
 
 
     }
+  
 
     public function deleteLinea($linea_id)
     {
@@ -105,10 +107,7 @@ class ShowPedidoProveedor extends Component
         lineapedidos::where('id', $linea_id)->delete();
     }
 
-    public function updatedtotal(){
-        Cabeceraproveedores::where('id',$this->pedido_id)
-        ->update(['total'=>$this->total]);
-    }
+   
     
 
 

@@ -23,10 +23,7 @@ class InsertarProductos extends Component
     public $subtotal;
     
 
-    protected $rules = [
-        'selectedTalla' => 'required',
-       
-    ];
+  
 
     public function render()
     {
@@ -82,7 +79,7 @@ public function updatedselectedModelo($modelo_id){
         $linea->save();
         //$total = lineapedidos::where('pedido_id', $this->pedido_id)->get()->sum('total');
         $pedido_id = $this->pedido_id;
-        $this->emit('sumaTotal');
+        $this->emit('sumaTotal',$this->pedido_id);
         $this->emit('verAddLinea',$pedido_id);
         
 

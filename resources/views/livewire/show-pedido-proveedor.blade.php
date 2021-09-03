@@ -165,7 +165,6 @@
     </div>
 
 
-</div>
 <script>
     document.addEventListener('livewire:load', function() {
         $('.slModelo').select2();
