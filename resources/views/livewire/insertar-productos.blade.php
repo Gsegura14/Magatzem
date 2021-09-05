@@ -6,8 +6,7 @@
 
                 <div class="col" wire:ignore>
                     <label for="modelo"> Modelo :</label>
-                    <select class="form-control" wire:model="selectedModelo" name="modelo" id="modelo"
-                        class="slModelo">
+                    <select class="slModelo" wire:model="selectedModelo" name="modelo" id="modelo">
                         <option value="">-- Modelo --</option>
                         @foreach ($modelos as $modelo)
                             <option value="{{ $modelo->id }}">{{ $modelo->referencia_sugerida }}

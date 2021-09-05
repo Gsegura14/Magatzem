@@ -378,7 +378,7 @@ return [
                 ],
                 [
                     'text' => 'Clientes',
-                    'url'  => '#',
+                    'url'  => 'admin/pedidos/clientes',
                 ],
                 
                 

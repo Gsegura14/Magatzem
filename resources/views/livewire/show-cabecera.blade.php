@@ -12,7 +12,7 @@
                 <div class="col-2">
                     <x-jet-label for="n_pedido">Nº pedido</x-jet-label>
                     <x-adminlte-input readonly type="text" name="n_pedido" wire:model="n_pedido"></x-adminlte-input>
-                   <input wire:model="cabecera"/>
+                   {{-- <input wire:model="cabecera"/> --}}
                 </div>
                 <div class="col-2">
                     <x-jet-label for="f_pedido">Fecha pedido</x-jet-label>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-3">
                     <x-jet-label for="total">Total</x-jet-label>
-                    <x-adminlte-input readonly type="text" placeholder="0.0" name="total" wire:model="total"></x-adminlte-input>
+                    <x-adminlte-input readonly type="text" placeholder=0 name="total" wire:model="total"></x-adminlte-input>
 
                 </div>
             </div>

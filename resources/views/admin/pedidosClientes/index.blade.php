@@ -7,13 +7,52 @@
 
 @section('content')
 
+<h1>Pedidos Clientes</h1>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nº Pedido</th>
+                    <th>Cliente</th>
+                    <th>Fecha Pedido</th>
+                    <th>Fecha Servicio</th>
+                    <th>Total</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach ($pedidosclientes as $pedido)
+               <tr>
+                   <td>{{$pedido->n_pedido}}</td>
+                   <td>{{$pedido->cliente->nombre}}</td>
+                   <td>{{$pedido->f_pedido}}</td>
+                   <td>{{$pedido->f_servicio}}</td>
+                   <td>{{$pedido->total}}</td>
+                   <td><form action="" method="GET">
+                    <x-adminlte-button class="btn-flat" type="submit"
+                    theme="primary" icon="fas fa-eye"/>
+                    @csrf
+                </form></td>
+                   <td><form action="" method="POST">
+                    <x-adminlte-button class="btn-flat" type="submit"
+                    theme="danger" icon="fas fa-trash"/>
+                    @csrf @method('delete')
+                </form></td>
+               </tr> 
+            @endforeach
+        </tbody>
+        </table>
+    </div>
+</div>
 
+<form action="{{route('pedidoCliente.nuevo')}}" method="GET">
+<x-adminlte-button class="btn-flat" type="submit"
+label="Nuevo" theme="success" icon="fas fa-lg fa-save"/>
+@csrf
 
-
-
-
-
-
+</form>
 
 
 @stop

@@ -1,5 +1,5 @@
 @extends('admin.index')
-@section('title', 'Pedidos')
+@section('title', 'Pedidos | Proveedores')
 
 @section('content_header')
     

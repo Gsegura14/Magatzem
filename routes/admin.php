@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\TallasController;
 use App\Http\Controllers\Admin\ImagenController;
 use App\Http\Controllers\Admin\ProveedorController;
 use App\Http\Controllers\Admin\CabeceraproveedoresController;
+use App\Http\Controllers\Admin\CabeceraPedidoClienteController;
+
 
 
 
@@ -22,7 +24,10 @@ Route::get('cliente/modificar/{cliente}',[ClienteController::class,'show'])->nam
 Route::put('cliente/modificar/{cliente}',[ClienteController::class,'update'])->name('cliente.update');
 Route::delete('cliente/eliminar/{cliente}',[ClienteController::class,'destroy'])->name('cliente.destroy');
 
+Route::get('pedidos/clientes',[CabeceraPedidoClienteController::class,'index'])->name('pedidosclientes.index');
+Route::get('pedidos/clientes/nuevo',[CabeceraPedidoClienteController::class,'create'])->name('pedidoCliente.nuevo');
 
+//Route::get('pedidos/clientes/nuevo',[PedidosClientes::class]);
 
 
 

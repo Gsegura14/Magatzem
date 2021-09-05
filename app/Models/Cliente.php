@@ -9,4 +9,8 @@ class Cliente extends Model
 {
     use HasFactory;
     protected $table = 'clientes';
+    // Relación de uno a muchos('inversa)
+    public function Cabeceracliente(){
+        return $this->hasOne('App\Models\CabeceraCliente');
+    }
 }
