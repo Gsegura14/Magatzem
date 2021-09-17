@@ -15,7 +15,7 @@ class CreateCabeceraproveedoresTable extends Migration
     {
         Schema::create('cabeceraproveedores', function (Blueprint $table) {
             $table->id();
-            $table->integer('n_pedido',false)->unique();
+            $table->integer('n_pedido',false);
             $table->date('f_pedido');
             $table->date('f_servicio');
             $table->unsignedBigInteger('proveedor_id')->nullable();

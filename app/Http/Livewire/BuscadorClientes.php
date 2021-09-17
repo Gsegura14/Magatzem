@@ -10,18 +10,28 @@ use Livewire\Component;
 class BuscadorClientes extends Component
 {
     public $search;
-    
+    public $cliente_id;
 
+   
     public function render()
     {
-        $clientes = Cliente::where('nombre','like','%'.$this->search.'%')->get();
+        //$clientes = Cliente::where('nombre','like','%'.$this->search.'%')->get();
+        $clientes = Cliente::all();
         return view('livewire.buscador-clientes',compact('clientes'));
     }
 
-    public function crearPedido($cliente_id){
+    public function crearPedido(){
 
-        $this->emit('completarCabecera',$cliente_id);
-
+       $this->emit('completarCabecera',$this->cliente_id);
     }
+
+
+    public function salir(){
+        return redirect()->route('pedidosclientes.index');
+    }
+
+  
+
+    
 
 }

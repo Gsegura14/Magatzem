@@ -30,7 +30,7 @@
                    <td>{{$pedido->f_pedido}}</td>
                    <td>{{$pedido->f_servicio}}</td>
                    <td>{{$pedido->total}}</td>
-                   <td><form action="" method="GET">
+                   <td><form action="{{route('pedidoCliente.show',$pedido)}}" method="GET">
                     <x-adminlte-button class="btn-flat" type="submit"
                     theme="primary" icon="fas fa-eye"/>
                     @csrf

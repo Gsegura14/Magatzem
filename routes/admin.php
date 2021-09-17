@@ -11,9 +11,8 @@ use App\Http\Controllers\Admin\ImagenController;
 use App\Http\Controllers\Admin\ProveedorController;
 use App\Http\Controllers\Admin\CabeceraproveedoresController;
 use App\Http\Controllers\Admin\CabeceraPedidoClienteController;
-
-
-
+use App\Http\Controllers\Admin\StockController;
+use App\Models\CabeceraCliente;
 
 Route::get('',[HomeController::class,'index']);
 
@@ -26,10 +25,11 @@ Route::delete('cliente/eliminar/{cliente}',[ClienteController::class,'destroy'])
 
 Route::get('pedidos/clientes',[CabeceraPedidoClienteController::class,'index'])->name('pedidosclientes.index');
 Route::get('pedidos/clientes/nuevo',[CabeceraPedidoClienteController::class,'create'])->name('pedidoCliente.nuevo');
+Route::get('pedido/clientes/modificar/{pedido}',[CabeceraPedidoClienteController::class,'show'])->name('pedidoCliente.show');
 
-//Route::get('pedidos/clientes/nuevo',[PedidosClientes::class]);
-
-
+Route::get('stock',[StockController::class,'index'])->name('stock.index');
+Route::get('stock/{producto}/{tallasID}/{stock}',[StockController::class,'create'])->name('stock.create');
+Route::get('stock/{producto}/{tallasID}',[StockController::class,'update'])->name('stock.update');
 
 
 Route::get('proveedores',[ProveedorController::class,'index'])->name('proveedor.index');
@@ -49,12 +49,12 @@ Route::delete('productos/eliminar/{producto}',[ProductoController::class,'destro
 Route::get('tipos',[TipoController::class,'index'])->name('tipos.index');
 Route::post('tipos/guardar',[TipoController::class,'guardar'])->name('tipos.guardar');
 Route::delete('tipos/elimimar/{tipo}',[TipoController::class,'destroy'])->name('tipos.destroy');
-Route::put('/tipos/guardar/{tipo}',[TipoController::class,'guardarmod'])->name('tipos.guardarmod');
+Route::put('tipos/guardar/{tipo}',[TipoController::class,'guardarmod'])->name('tipos.guardarmod');
 
 Route::get('marcas',[MarcaController::class,'index'])->name('marcas.index');
 Route::post('marcas/guardar',[MarcaController::class,'guardar'])->name('marcas.guardar');
 Route::delete('marcas/elimimar/{marca}',[MarcaController::class,'destroy'])->name('marcas.destroy');
-Route::put('/marcas/guardar/{marca}',[MarcaController::class,'guardarmod'])->name('marcas.guardarmod');
+Route::put('marcas/guardar/{marca}',[MarcaController::class,'guardarmod'])->name('marcas.guardarmod');
 
 Route::get('tallas',[TallasController::class,'index'])->name('tallas.index');
 Route::post('tallas/guardar',[TallasController::class,'guardar'])->name('tallas.guardar');

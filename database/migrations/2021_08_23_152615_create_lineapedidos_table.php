@@ -17,19 +17,21 @@ class CreateLineapedidosTable extends Migration
             $table->id();
             $table->integer('n_linea');
 
-            $table->unsignedBigInteger('pedido_id');
+            $table->unsignedBigInteger('pedido_id')->nullable();
              $table->foreign('pedido_id')
                 ->references('id')
                 ->on('cabeceraproveedores')
-                ->onDelete('cascade');
+                ->onDelete('set null');
+                
 
-             $table->unsignedBigInteger('producto_id');
-                $table->foreign('producto_id')
+                $table->unsignedBigInteger('stock_id');
+                $table->foreign('stock_id')
                     ->references('id')
-                    ->on('productos')
-                    ->onDelete('cascade');  
-            $table->integer('Cantidad');
-            $table->double('Precio',5,2);
+                    ->on('stocks')
+                    ->onDelete('cascade');
+                      
+            $table->integer('cantidad');
+            $table->double('precio',5,2);
             $table->double('total',8,2); 
             $table->timestamps();
         });

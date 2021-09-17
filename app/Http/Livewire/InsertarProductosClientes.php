@@ -3,8 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\lineaspedidocliente;
-use App\Models\Producto;
-use App\Models\Productotalla;
+use App\Models\Stock;
 use Livewire\Component;
 
 class InsertarProductosClientes extends Component
@@ -21,18 +20,20 @@ class InsertarProductosClientes extends Component
     public function render()
   {
 
-        $modelos = Productotalla::join('productos','productos.id','=','producto_id')
-                        ->join('tallas','tallas.id','=','producto_talla.talla_id')
-                        ->get();
-
+        $modelos = Stock::all();
+        $pedido_id = $this->pedido_id;
     
-        return view('livewire.insertar-productos-clientes',compact('modelos'));
+        return view('livewire.insertar-productos-clientes',compact('modelos','pedido_id'));
     }
     function updatedSelectedModelo(){
         // $selectedModelo = $this->selectedModelo;
         // $this->precio = Producto::where('id',$modelo_id)->first()->value('precio_vta');
-        $producto = Producto::where('id',$this->selectedModelo)->first();
-        $this->precio = $producto->precio_vta;
+        
+        $producto = Stock::where('id',$this->selectedModelo)->first();
+        if($producto){
+            $this->precio = $producto->producto->precio_vta;
+        }
+        
 
 
     }
@@ -45,7 +46,7 @@ class InsertarProductosClientes extends Component
     }
 
     public function insertarLinea(){
-        $linea = new lineaspedidocliente();
+        
         $n_lineas = lineaspedidocliente::where('pedido_id',$this->pedido_id)
                     ->count();
                 
@@ -59,17 +60,20 @@ class InsertarProductosClientes extends Component
                 $numero = $numero+1;
         }
 
-        $linea->n_linea = $numero;
-        $linea->pedido_id = $this->pedido_id;
-        $linea->cliente_id = $this->cliente_id;
-        $linea->producto_id = $this->selectedModelo;
-        $linea->cantidad = $this->cantidad;
-        $linea->precio = $this->precio;
-        $linea->total =$this->subtotal;
-        $linea->save();
+        if($this->cantidad == true && $this->precio == true && $this->pedido_id == true){
+
+            $linea = new lineaspedidocliente();
+            $linea->n_linea = $numero;
+            $linea->pedido_id = $this->pedido_id;
+            $linea->stock_id = $this->selectedModelo;
+            $linea->cantidad = $this->cantidad;
+            $linea->precio = $this->precio;
+            $linea->total =$this->subtotal;
+            $linea->save();
+            $this->emit('verAddLinea',$this->pedido_id);
+            
+        }
         
-        // $this->emit('sumaTotal',$this->pedido_id);
-        // $this->emit('verAddLinea',$this->pedido_id);
 
         
         

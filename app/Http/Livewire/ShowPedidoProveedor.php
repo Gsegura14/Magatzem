@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Cabeceraproveedores;
 use Livewire\Component;
 use App\Models\Producto;
 use App\Models\Talla;

@@ -1,114 +1,199 @@
 @extends('admin.index')
 
-@section('title','Productos')
+@section('title', 'Nuevo')
 @section('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.css"
+        integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 @section('content')
-<h1>Producto nuevo</h1>
-<div class="card">
-    <div class="card-body">
-        <form action="{{route('productos.guardar')}}" method="post">
-            <div class="row">
-                <div class="col-md-3">
-                    <x-adminlte-input name="modelo" id="modelo" label="Modelo" placeholder="Modelo"
-                        fgroup-class="" disable-feedback />
+    <h1>Producto nuevo</h1>
+    <div class="card">
+        <div class="card-body">
+            <h4>Modelo nuevo</h4>
+            <form action="{{ route('productos.guardar') }}" method="post">@csrf
+                <div class="row" name="nuevoProducto">
+                    <div class="col-md-4">
+                        <x-adminlte-input name="modelo" id="modelo" label="Modelo" placeholder="Modelo" fgroup-class=""
+                            disable-feedback />
 
-                    @error('modelo')
-                    <x-adminlte-alert theme="danger" title="Error">
-                        {{ $message }}
-                    </x-adminlte-alert>
-                    @enderror
+                        @error('modelo')
+                            <x-adminlte-alert theme="danger" title="Error">
+                                {{ $message }}
+                            </x-adminlte-alert>
+                        @enderror
+                    </div>
+                    <div class="col-md-8">
+                        <x-adminlte-input name="color" id="color" label="Color" placeholder="Color" fgroup-class="col-md-3"
+                            disable-feedback />
+                        @error('color')
+                            <x-adminlte-alert theme="danger" title="Error">
+                                {{ $message }}
+                            </x-adminlte-alert>
+                        @enderror
+                    </div>
+
                 </div>
-                
-
-            </div>
 
 
+                <div class="row">
+                    <div class="col-md-6">
+                        <x-adminlte-input name="descripcion_corta" id="descripcion_corta" label="Descripción corta"
+                            placeholder="Descipción corta" disable-feedback />
+
+                        @error('descripcion_corta')
+                            <x-adminlte-alert theme="danger" title="Error">
+                                {{ $message }}
+                            </x-adminlte-alert>
+                        @enderror
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <x-adminlte-select name="selTipo" label="Tipo de producto">
+                            @foreach ($tipos as $tipo)
+                                <option value="{{ $tipo->id }}">{{ $tipo->tipo_producto }}</option>
+                            @endforeach
+                        </x-adminlte-select>
+                    </div>
+                    <div class="col-3">
+                        <x-adminlte-select name="selMarca" label="Marca">
+                            @foreach ($marcas as $marca)
+                                <option value="{{ $marca->id }}">{{ $marca->nombre_marca }}</option>
+                            @endforeach
+                        </x-adminlte-select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <x-adminlte-input name="precio_coste" id="precio_coste" label="Precio coste" placeholder="0.0" />
+                        @error('precio_coste')
+                            <x-adminlte-alert theme="danger" title="Error">
+                                {{ $message }}
+                            </x-adminlte-alert>
+                        @enderror
+                    </div>
+                    <div class="col-3">
+                        <x-adminlte-input name="precio_venta" id="precio_venta" label="Precio venta" placeholder="0.0" />
+                        @error('precio_venta')
+                            <x-adminlte-alert theme="danger" title="Error">
+                                {{ $message }}
+                            </x-adminlte-alert>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <x-adminlte-select name="selPais" label="Made In">
+                            <option value="Made in Spain">Made In Spain</option>
+                            <option value="Made in China">Made in China</option>
+                        </x-adminlte-select>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4>Tallas</h4>
             <div class="row">
-                <x-adminlte-input name="color" id="color" label="Color" placeholder="Color" fgroup-class="col-md-3"
-                    disable-feedback />
-                @error('color')
-                <x-adminlte-alert theme="danger" title="Error">
-                    {{ $message }}
-                </x-adminlte-alert>
-                @enderror
-            </div>
-
-            <div class="row">
-                <x-adminlte-input name="descripcion_corta" id="descripcion_corta" label="Descripción corta"
-                    placeholder="Descipción corta" fgroup-class="col-md-3" disable-feedback />
-
-                @error('descripcion_corta')
-                <x-adminlte-alert theme="danger" title="Error">
-                    {{ $message }}
-                </x-adminlte-alert>
-                @enderror
-            </div>
-            <div class="row">
-                <div class="col-3">
-                    <x-adminlte-select name="selTipo" label="Tipo de producto">
-                        @foreach ($tipos as $tipo)
-                        <option value="{{$tipo->id}}">{{$tipo->tipo_producto}}</option>
+                <div class="col-3 form-group">
+                    <label for="selectTallas">Tallas</label>
+                    <select class="form-control" name="selectTallas[]" id="selectTallas" multiple>
+                        <option value="">-- Tallas --</option>
+                        @foreach ($tallas as $talla)
+                            <option value="{{ $talla->id }}">{{ $talla->talla }}</option>
                         @endforeach
-                    </x-adminlte-select>
+                    </select>
                 </div>
-                <div class="col-3">
-                    <x-adminlte-select name="selMarca" label="Marca">
-                        @foreach ($marcas as $marca)
-                        <option value="{{$marca->id}}">{{$marca->nombre_marca}}</option>
-                        @endforeach
-                    </x-adminlte-select>
+                <div class="col-2 form-group">
+                    <label for="stock">Stock:</label>
+                    <x-adminlte-input name="stock" id="stock" value=0 />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#abrirGaleria">
+                        Seleccionar imagen
+                    </button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-3">
-                    <x-adminlte-input name="precio_coste" id="precio_coste" label="Precio coste" placeholder="0.0" />
-                    @error('precio_coste')
-                    <x-adminlte-alert theme="danger" title="Error">
-                        {{ $message }}
-                    </x-adminlte-alert>
-                    @enderror
-                </div>
-
-                <div class="col-3">
-                    <x-adminlte-input name="precio_venta" id="precio_venta" label="Precio venta" placeholder="0.0" />
-                    @error('precio_venta')
-                    <x-adminlte-alert theme="danger" title="Error">
-                        {{ $message }}
-                    </x-adminlte-alert>
-                    @enderror
                 </div>
             </div>
-            <div class="row">
-                <div class="col-3">
-                    <x-adminlte-select name="selPais" label="Made In">
-                        <option value="Made in Spain">Made In Spain</option>
-                        <option value="Made in China">Made in China</option>
-                    </x-adminlte-select>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-3"></div>
-                <div class="col-3">
-
-                    <a href="{{route('productos.index')}}">
+            <div class="row float-right">
+                <div class="col-12">
+                    <a href="{{ route('productos.index') }}">
                         <x-adminlte-button class="btn-flat" label="Cancelar" theme="primary" icon="fa fa-undo"
-                            type="button" /></a>
-
+                            type="button" />
+                    </a>
                     <x-adminlte-button class="btn-flat" label="Reset" theme="danger" icon="fas fa-ban" type="reset" />
                     <x-adminlte-button class="btn-flat" label="Guardar" theme="success" icon="fas fa-lg fa-save"
                         type="submit" />
                 </div>
             </div>
+        </div>
+    </div>
 
-            @csrf
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true" id="abrirGaleria" name="abrirGaleria">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        @foreach ($imagenes as $imagen)
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <input class="radioImagen form-check-input" type="radio" name="radioImagen"
+                                            value={{ $imagen->id }}>
+                                        <img src="{{ asset($imagen->url) }}" class="card-img-top" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+
+
+        </div>
+        <input type="hidden" name="selectIdFoto" id="selectIdFoto">
         </form>
     </div>
-</div>
-</div>
+
+    <script>
+        // function seleccionarImagen(){
+        //     var radios = document.getElementsByName('radioImagen');
+        //     var idImagen = document.getElementById('selectIdFoto');
+        //     for(var i=0;i<radios.length;i++){
+        //         if(radios[i].checked==true){
+        //             idImagen.value = radios[i].value;
+        //             break
+        //         }
+        //     }
+        // }
+    </script>
+
+@stop
 @endsection
+
 
 <!-- Scripts -->
 @section('js')

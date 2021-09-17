@@ -13,12 +13,17 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+        <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/select2/css/select2.min.css">
+        <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+        @stack('js')
         @livewireStyles
         
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-               
+        <script src="https://adminlte.io/themes/v3/plugins/select2/js/select2.full.min.js"></script> 
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
     </head>
@@ -35,7 +40,6 @@
         @stop
         
         @section('css')
-            <link rel="stylesheet" href="/css/admin_custom.css">
             <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
             
             @stop

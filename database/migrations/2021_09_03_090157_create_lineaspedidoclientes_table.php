@@ -15,6 +15,7 @@ class CreateLineaspedidoclientesTable extends Migration
     {
         Schema::create('lineaspedidoclientes', function (Blueprint $table) {
             $table->id();
+            $table->integer('n_linea');
             $table->unsignedBigInteger('pedido_id');
             
                 $table->foreign('pedido_id')
@@ -22,16 +23,10 @@ class CreateLineaspedidoclientesTable extends Migration
                     ->on('cabecera_clientes')
                     ->onDelete('cascade');
 
-            $table->unsignedBigInteger('cliente_id');
-                $table->foreign('cliente_id')
+            $table->unsignedBigInteger('stock_id');
+                $table->foreign('stock_id')
                     ->references('id')
-                    ->on('clientes')
-                    ->onDelete('cascade');
-
-            $table->unsignedBigInteger('producto_id');
-                $table->foreign('producto_id')
-                    ->references('id')
-                    ->on('producto_talla')
+                    ->on('stocks')
                     ->onDelete('cascade');
 
             $table->integer('cantidad');

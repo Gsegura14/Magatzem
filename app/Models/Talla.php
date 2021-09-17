@@ -16,4 +16,8 @@ class Talla extends Model
 public function lineapedidos(){
     return $this->belongsTo('App\Models\lineapedidos');
 }
+
+public function stocks(){
+    return $this->belongsTo('App\Models\Stock');
+}
 }

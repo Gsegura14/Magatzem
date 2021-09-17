@@ -17,6 +17,8 @@ class Producto extends Model
             return $this->belongsTo('App\Models\Tipo');
     }
 
+
+
     // Relación de muchos a muchos
     public function tallas(){
             return $this->belongsToMany('App\Models\Talla');
@@ -26,4 +28,13 @@ class Producto extends Model
     public function imagen(){
             return $this->hasOne('App\Models\Imagen');
     }
+
+    public function stock(){
+            return $this->hasMany('App\Models\Stock');
+    }
+
+    public function lineaclientes(){
+            return $this->hasMany('App\Models\lineaspedidocliente');
+    }
+    
 }

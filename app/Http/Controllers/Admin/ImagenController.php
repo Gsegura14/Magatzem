@@ -5,12 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Imagen;
 use App\Models\Producto;
-use Faker\Provider\ar_JO\Company;
 use Illuminate\Http\Request;
-use Illuminate\support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redis;
 
 class ImagenController extends Controller
 {

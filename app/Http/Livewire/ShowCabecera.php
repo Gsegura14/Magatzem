@@ -15,14 +15,14 @@ class ShowCabecera extends Component
                             'sumaTotal' => 'sumaTotal'];
 
     public $nombre_proveedor,$n_pedido,$f_pedido,$f_servicio,$total,$pedido_id;
+
     public function render()
     {
         return view('livewire.show-cabecera');
     }
 
     public function mostrar_cabecera($nombre_proveedor,
-    $n_pedido,$f_pedido,$f_servicio,
-    $proveedor_id,$total,$pedido_id){
+    $n_pedido,$f_pedido,$f_servicio,$total,$pedido_id){
         $f_pedido = date('d-m-Y', strtotime($f_pedido));
         $f_servicio = date('d-m-Y', strtotime($f_servicio));
         $this->nombre_proveedor = $nombre_proveedor;

@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class lineaspedidocliente extends Model
 {
     use HasFactory;
+    protected $table = 'lineaspedidoclientes';
 
-    public function productotalla(){
-        return $this->belongsTo('App\Models\Productotalla');
+   public function producto(){
+        return $this->belongsTo('App\Models\Producto');
+    }
+    public function stock(){
+        return $this->belongsTo(('App\Models\Stock'));
     }
 }
