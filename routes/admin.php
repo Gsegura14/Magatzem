@@ -26,6 +26,7 @@ Route::delete('cliente/eliminar/{cliente}',[ClienteController::class,'destroy'])
 Route::get('pedidos/clientes',[CabeceraPedidoClienteController::class,'index'])->name('pedidosclientes.index');
 Route::get('pedidos/clientes/nuevo',[CabeceraPedidoClienteController::class,'create'])->name('pedidoCliente.nuevo');
 Route::get('pedido/clientes/modificar/{pedido}',[CabeceraPedidoClienteController::class,'show'])->name('pedidoCliente.show');
+Route::delete('pedido/clientes/delete/{pedido}',[CabeceraPedidoClienteController::class,'destroy'])->name('pedidoCliente.destroy'); 
 
 Route::get('stock',[StockController::class,'index'])->name('stock.index');
 Route::get('stock/{producto}/{tallasID}/{stock}',[StockController::class,'create'])->name('stock.create');

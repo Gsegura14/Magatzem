@@ -35,7 +35,7 @@
                     theme="primary" icon="fas fa-eye"/>
                     @csrf
                 </form></td>
-                   <td><form action="" method="POST">
+                   <td><form action="{{route('pedidoCliente.destroy',$pedido)}}" method="POST">
                     <x-adminlte-button class="btn-flat" type="submit"
                     theme="danger" icon="fas fa-trash"/>
                     @csrf @method('delete')
