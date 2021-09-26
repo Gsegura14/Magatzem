@@ -21,18 +21,23 @@ protected $listeners = ['actualizaSumaTotal' => 'actualizaSumaTotal'];
         $this->f_pedido = $pedido->f_pedido;
         $this->f_servicio = $pedido->f_servicio;
         $dias = (strtotime($pedido->f_servicio)-strtotime($pedido->f_pedido))/86400;
-        $this->total = $pedido->total;
+        $this->total = lineaspedidocliente::where('pedido_id',$pedido->id)
+        ->sum('total');
         $this->dias = $dias;
         return view('livewire.show-cabecera-clientes');
     }
 
 
     public function actualizaSumaTotal($pedido_id){
-            $this->total = lineaspedidocliente::where('pedido_id',$pedido_id)
+            $total = lineaspedidocliente::where('pedido_id',$pedido_id)
             ->sum('total');
         // Actualizamos registro
         CabeceraCliente::where('id',$pedido_id)
-        ->update(['total' => $this->total]);
+        ->update(['total' => $total]);
+    }
+
+    public function salir(){
+        return redirect()->route('pedidosclientes.index');
     }
 
 }

@@ -1,77 +1,95 @@
 @extends('admin.index')
-@section('title', 'Proveedores')
+@section('title', 'Proveedores | Lista')
 
 @section('content_header')
 
 @stop
 
 @section('content')
-    <h1>Proveedores</h2>
-        <div class="card">
-            <div class="card-body">
 
-                <table class="table table-striped" id="proveedores">
-                    <thead>
-                        <tr>
-                            <th>Proveedor</th>
-                            <th>Dirección</th>
-                            <th>CP</th>
-                            <th>Población</th>
-                            <th>Provincia</th>
-                            <th>Teléfono</th>
-                            <th>Teléfono 2</th>
-                            <th>Email</th>
-                            <th>Contacto</th>
-                            <th>CIF</th>
-                            <th>Marca</th>
-                            <th>Observaciones</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($proveedores as $proveedor)
-                            <tr>
-                                <td>{{ $proveedor->nombre_proveedor }}</td>
-                                <td>{{ $proveedor->direccion }}</td>
-                                <td>{{ $proveedor->cp }}</td>
-                                <td>{{ $proveedor->poblacion }}</td>
-                                <td>{{ $proveedor->provincia }}</td>
-                                <td>{{ $proveedor->telefono }}</td>
-                                <td>{{ $proveedor->telefono_movil }}</td>
-                                <td>{{ $proveedor->email }}</td>
-                                <td>{{ $proveedor->contacto }}</td>
-                                <td>{{ $proveedor->cif }}</td>
-                                <td>{{ $proveedor->marca->nombre_marca }}</td>
-                                <td>{{ $proveedor->observaciones }}</td>
-                                
-                                <td>
-                                    <form action="{{ route('proveedor.ver', $proveedor) }}" method="GET">
-                                        <x-adminlte-button class="btn-flat" type="submit" theme="primary"
-                                            icon="fas fa-eye" />
-                                        @csrf
-                                    </form>
-                                </td>
 
-                                <td>
-                                    <form action="{{ route('proveedor.destroy', $proveedor) }}" method="POST">
-                                        <x-adminlte-button class="btn-flat" type="submit" theme="danger"
-                                            icon="fas fa-trash" />
-                                        @method('delete') @csrf
-                                    </form>
-                                </td>
-                            </tr>
-
-                        @endforeach
-                    </tbody>
-                </table>
-
-            </div>
+    <div class="row">
+        <div class="col-8">
+            <h2>Proveedores</h2>
         </div>
-        <form action="{{ route('proveedor.nuevo') }}" method="GET">
-            <x-adminlte-button class="btn-flat" type="submit" label="Nuevo" theme="success" icon="fa fa-user" />
-            @csrf
-        </form>
+        <div class="col-4 mb-2">
+            <a href="{{route('admin')}}"><x-adminlte-button class="float-right mr-2 mt-2" theme="danger"
+                label="Inicio" id="btnInicio" /></a>
+                <a href="{{route('proveedor.nuevo')}}"><x-adminlte-button class="float-right mr-2 mt-2" theme="success"
+                    label="Nuevo" id="btnNuevo" /></a>
+                    
+            </div>
+            
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+
+            <table class="table table-striped" id="proveedores">
+                <thead>
+                    <tr>
+                        <th>Proveedor</th>
+                        <th>Dirección</th>
+                        <th>CP</th>
+                        <th>Población</th>
+                        <th>Provincia</th>
+                        <th>Teléfono</th>
+                        <th>Teléfono 2</th>
+                        <th>Email</th>
+                        <th>Contacto</th>
+                        <th>CIF</th>
+                        <th>Marca</th>
+                        <th>Observaciones</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($proveedores as $proveedor)
+                        <tr>
+                            <td>{{ $proveedor->nombre_proveedor }}</td>
+                            <td>{{ $proveedor->direccion }}</td>
+                            <td>{{ $proveedor->cp }}</td>
+                            <td>{{ $proveedor->poblacion }}</td>
+                            <td>{{ $proveedor->provincia }}</td>
+                            <td>{{ $proveedor->telefono }}</td>
+                            <td>{{ $proveedor->telefono_movil }}</td>
+                            <td>{{ $proveedor->email }}</td>
+                            <td>{{ $proveedor->contacto }}</td>
+                            <td>{{ $proveedor->cif }}</td>
+                            <td>{{ $proveedor->marca->nombre_marca }}</td>
+                            <td>{{ $proveedor->observaciones }}</td>
+                            
+                            <td>
+                                <form action="{{ route('proveedor.ver', $proveedor) }}" method="GET">
+                                    <x-adminlte-button class="btn-flat" type="submit" theme="primary"
+                                        icon="fas fa-eye" />
+                                    @csrf
+                                </form>
+                            </td>
+
+                            <td>
+                                <form action="{{ route('proveedor.destroy', $proveedor) }}" method="POST">
+                                    <x-adminlte-button class="btn-flat" type="submit" theme="danger"
+                                        icon="fas fa-trash" />
+                                    @method('delete') @csrf
+                                </form>
+                            </td>
+                        </tr>
+
+                    @endforeach
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <form action="{{ route('proveedor.nuevo') }}" method="GET">
+        <x-adminlte-button class="btn-flat" type="submit" label="Nuevo" theme="success" icon="fa fa-user" />
+        @csrf
+    </form>
+
+   
+        
 
     @stop
 

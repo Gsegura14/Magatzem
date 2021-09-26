@@ -1,23 +1,22 @@
 <div>
     <div class="row">
         <div class="col-8">
-            <h1>Cliente</h1>
+            <h1>Proveedor</h1>
         </div>
         <div class="col-4">
             <x-adminlte-button class="float-right mr-2 mt-2" theme="danger" wire:click="salir()" label="Salir" id="btnSalir"/>
-           <a href="{{route('pedidoCliente.nuevo')}}"><x-adminlte-button class="float-right mr-2 mt-2" theme="success" label="Nuevo" id="btnNuevo" /></a> 
+           <a href="{{route('pedidoProveedor.nuevo')}}"><x-adminlte-button class="float-right mr-2 mt-2" theme="success" label="Nuevo" id="btnNuevo" /></a> 
         </div>
     </div>
-
     
     <div class="card">
         <div class="card-body">
             <div class="row">
                
                 <div class="col-sm-12 col-md-4 col-lg-4">
-                    <x-jet-label for="cliente">Cliente :</x-jet-label>
-                    <x-adminlte-input class="w-full" type="text" name="cliente" readonly wire:model="cliente" id="cliente">
-                        Cliente</x-adminlte-input>
+                    <x-jet-label for="cliente">Proveedor :</x-jet-label>
+                    <x-adminlte-input class="w-full" type="text" name="proveedor" readonly wire:model="proveedor" id="proveedor">
+                        Proveedor</x-adminlte-input>
                 </div>
                 <div class="col-sm-12 col-md-4 col-lg-4">
                     <x-jet-label for="n_pedido">Nº Pedido :</x-jet-label>
@@ -49,7 +48,6 @@
                 </div>
             </div>
            
-
 
 
         </div>

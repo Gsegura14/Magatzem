@@ -6,7 +6,20 @@
 @stop
 
 @section('content')
-<h1>Pedidos Proveedores</h2>
+<div class="row">
+    <div class="col-8"><h1>Pedidos Proveedores</h1></div>
+    <div class="col-4 mb-2">
+        <a href="{{route('admin')}}">
+            <x-adminlte-button class="float-right mr-2 mt-2" theme="danger"
+            label="Inicio" id="btnInicio"/>
+        </a>
+        <a href="{{route('pedidoProveedor.nuevo')}}">
+            <x-adminlte-button class="float-right mr-2 mt-2" theme="success"
+            label="Nuevo" id="btnNuevo" />
+        </a>
+
+    </div>
+</div>
 <div class="card">
     <div class="card-body">
         
@@ -26,7 +39,7 @@
                 @foreach ($cabeceras as $cabecera)
                 <tr>
                     <td>{{$cabecera->n_pedido}}</td>
-                    <td>{{$cabecera->proveedor->nombre_proveedor}}</td>
+                    <td>{{$cabecera->proveedor['nombre_proveedor']}}</td>
                     <td>{{$cabecera->f_pedido}}</td>
                     <td>{{$cabecera->f_servicio}}</td>
                     <td>{{$cabecera->total}}</td>

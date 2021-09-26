@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Cabeceraproveedores;
-use App\Models\Proveedor;
+use App\Models\Cabeceraproveedores as pedidosProveedores;
 
 class CabeceraproveedoresController extends Controller
 {
@@ -16,7 +15,7 @@ class CabeceraproveedoresController extends Controller
      */
     public function index()
     {
-        $cabeceras = Cabeceraproveedores::all();
+        $cabeceras = pedidosProveedores::all();
         return view('admin.pedidosProveedores.index',compact('cabeceras'));
     }
 
@@ -48,7 +47,7 @@ class CabeceraproveedoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Cabeceraproveedores $cabecera)
+    public function show(pedidosProveedores $cabecera)
     {
         return view('admin.pedidosProveedores.verPedido',compact('cabecera'));
     }
@@ -82,7 +81,7 @@ class CabeceraproveedoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cabeceraproveedores $cabecera)
+    public function destroy(pedidosProveedores $cabecera)
     {
         $cabecera->delete();
         return redirect()->route('pedidoProveedor.index');

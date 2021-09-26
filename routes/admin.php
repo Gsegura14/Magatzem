@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\CabeceraPedidoClienteController;
 use App\Http\Controllers\Admin\StockController;
 use App\Models\CabeceraCliente;
 
-Route::get('',[HomeController::class,'index']);
+Route::get('',[HomeController::class,'index'])->name('admin');
 
 Route::get('clientes',[ClienteController::class,'index'])->name('clientes.index');
 Route::get('cliente/nuevo',[ClienteController::class,'create'])->name('cliente.nuevo');

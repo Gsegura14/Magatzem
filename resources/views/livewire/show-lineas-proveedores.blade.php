@@ -1,4 +1,5 @@
 <div>
+    <div>
         <h1>Líneas pedido</h1>
         <div class="card">
             <div class="card-body">
@@ -60,7 +61,7 @@
                                         <td class="px-6 py-4 text-right text-sm font-medium">
                                         <td>
                                             <x-adminlte-button theme="danger" icon="fas fa-trash"
-                                                wire:click="deleteLinea({{ $linea->id }},{{ $linea->pedido_id}})" />
+                                                wire:click="deleteLinea({{ $linea->id }})" />
                                         </td>
     
                                     </tr>
@@ -74,4 +75,5 @@
                 </x-table>
             </div>
         </div>
+</div>
 </div>

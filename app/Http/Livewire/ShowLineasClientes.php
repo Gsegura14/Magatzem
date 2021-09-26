@@ -28,7 +28,9 @@ class ShowLineasClientes extends Component
     }
 
     public function deleteLinea($linea_id){
-        $linea = lineaspedidocliente::find($linea_id);
+        $pedido = $this->pedido;
+        $linea = lineaspedidocliente::where('id',$linea_id)->first();
         $linea->delete();
+        $this->emit('actualizaSumaTotal',$pedido->id);
     }
 }

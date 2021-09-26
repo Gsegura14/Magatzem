@@ -36,5 +36,8 @@ class Producto extends Model
     public function lineaclientes(){
             return $this->hasMany('App\Models\lineaspedidocliente');
     }
+    public function lineaproveedores(){
+        return $this->hasMany('App\Models\lineapedidos');
+}
     
 }

@@ -10,10 +10,10 @@ class lineapedidos extends Model
     protected $table = 'lineapedidos';
     use HasFactory;
 
-    public function talla(){
-        return $this->belongsTo('App\Models\Talla');
-    }
     public function producto(){
         return $this->belongsTo('App\Models\Producto');
+    }
+    public function stock(){
+        return $this->belongsTo(('App\Models\Stock'));
     }
 }

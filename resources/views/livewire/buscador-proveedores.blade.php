@@ -16,17 +16,17 @@
 
     <div class="card">
         <div class="card-body">
-            @if ($clientes->count())
+            @if ($proveedores->count())
                 <div class="container">
 
                     <div class="row d-flex align-items-center">
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group" wire:ignore>
-                                <label>Cliente :</label>
-                                <select class="select2" style="width: 100%;" wire:model="cliente_id">
-                                    <option value="">-- Buscar cliente --</option>
-                                    @foreach ($clientes as $cliente)
-                                        <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
+                                <label>Proveedor :</label>
+                                <select class="select2" style="width: 100%;" wire:model="proveedor_id">
+                                    <option value="">-- Buscar proveedor --</option>
+                                    @foreach ($proveedores as $proveedor)
+                                        <option value="{{ $proveedor->id }}">{{ $proveedor->nombre_proveedor }}</option>
 
                                     @endforeach
 
@@ -53,7 +53,7 @@
             $(document).ready(function() {
                 $('.select2').select2();
                 $('.select2').on('change', function() {
-                    @this.set('cliente_id', this.value);
+                    @this.set('proveedor_id', this.value);
 
                 });
 
@@ -68,7 +68,7 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
-                            text: '¡Debes seleccionar un cliente!',
+                            text: '¡Debes seleccionar un proveedor!',
                             // footer: '<a href="">Why do I have this issue?</a>'
                         })
 

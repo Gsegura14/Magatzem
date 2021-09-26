@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\CabeceraCliente;
-use App\Models\lineaspedidocliente;
+use App\Models\Cabeceraproveedores;
+use App\Models\lineapedidos;
 use App\Models\Stock;
 use Livewire\Component;
 
-class InsertarProductosClientes extends Component
+class InsertarProductosProveedores extends Component
 {
     public $selectedModelo;
     public $cantidad;
@@ -15,7 +15,7 @@ class InsertarProductosClientes extends Component
     public $subtotal;
     public $producto;
     public $pedido_id;
-    public $cliente_id;
+    public $proveedor_id;
 
     protected $listeners = ['pedido' => 'pedido'];
     public function render()
@@ -24,7 +24,7 @@ class InsertarProductosClientes extends Component
         $modelos = Stock::all();
         $pedido_id = $this->pedido_id;
     
-        return view('livewire.insertar-productos-clientes',compact('modelos','pedido_id'));
+        return view('livewire.insertar-productos-proveedores',compact('modelos','pedido_id'));
     }
     function updatedSelectedModelo(){
         // $selectedModelo = $this->selectedModelo;
@@ -32,7 +32,7 @@ class InsertarProductosClientes extends Component
         
         $producto = Stock::where('id',$this->selectedModelo)->first();
         if($producto){
-            $this->precio = $producto->producto->precio_vta;
+            $this->precio = $producto->producto->precio_coste;
         }
         
 
@@ -48,13 +48,13 @@ class InsertarProductosClientes extends Component
 
     public function insertarLinea(){
         
-        $n_lineas = lineaspedidocliente::where('pedido_id',$this->pedido_id)
+        $n_lineas = lineapedidos::where('pedido_id',$this->pedido_id)
                     ->count();
                 
         if($n_lineas == 0){
             $numero = 1;
         }elseif($n_lineas>0){
-            $ultima_linea = lineaspedidocliente::where('pedido_id',$this->pedido_id)
+            $ultima_linea = lineapedidos::where('pedido_id',$this->pedido_id)
                 ->orderBy('n_linea','desc')
                 ->first();
                 $numero = $ultima_linea->n_linea;
@@ -63,7 +63,7 @@ class InsertarProductosClientes extends Component
 
         if($this->cantidad == true && $this->precio == true && $this->pedido_id == true){
 
-            $linea = new lineaspedidocliente();
+            $linea = new lineapedidos();
             $linea->n_linea = $numero;
             $linea->pedido_id = $this->pedido_id;
             $linea->stock_id = $this->selectedModelo;
@@ -79,9 +79,9 @@ class InsertarProductosClientes extends Component
         
         
     }
-    public function pedido($n_pedido,$cliente_id){
-        $pedido = CabeceraCliente::where('n_pedido',$n_pedido)->first();
+    public function pedido($n_pedido,$proveedor_id){
+        $pedido = Cabeceraproveedores::where('n_pedido',$n_pedido)->first();
         $this->pedido_id = $pedido->id;
-        $this->cliente_id = $cliente_id;
+        $this->proveedor_id = $proveedor_id;
     }
 }

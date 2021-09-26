@@ -1,23 +1,12 @@
 <div>
-    <div class="row">
-        <div class="col-8">
-            <h1>Cliente</h1>
-        </div>
-        <div class="col-4">
-            <x-adminlte-button class="float-right mr-2 mt-2" theme="danger" wire:click="salir()" label="Salir" id="btnSalir"/>
-           <a href="{{route('pedidoCliente.nuevo')}}"><x-adminlte-button class="float-right mr-2 mt-2" theme="success" label="Nuevo" id="btnNuevo" /></a> 
-        </div>
-    </div>
-
-    
+    <h1>Proveedor</h1>
     <div class="card">
         <div class="card-body">
             <div class="row">
-               
                 <div class="col-sm-12 col-md-4 col-lg-4">
-                    <x-jet-label for="cliente">Cliente :</x-jet-label>
-                    <x-adminlte-input class="w-full" type="text" name="cliente" readonly wire:model="cliente" id="cliente">
-                        Cliente</x-adminlte-input>
+                    <x-jet-label for="proveedor">Proveedor :</x-jet-label>
+                    <x-adminlte-input class="w-full" type="text" name="proveedor" readonly wire:model="proveedor" id="proveedor">
+                        Proveedor</x-adminlte-input>
                 </div>
                 <div class="col-sm-12 col-md-4 col-lg-4">
                     <x-jet-label for="n_pedido">Nº Pedido :</x-jet-label>
@@ -48,7 +37,13 @@
                         wire:model="total"></x-adminlte-input>
                 </div>
             </div>
-           
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    
+                    <x-adminlte-button wire:click="guardarPedido" id="btnCrear" theme="primary"
+                        class="col-md-3 mt-4 float-right btn btn-primary btn-block" label="Crear pedido">Crear pedido</x-adminlte-button>
+                </div>
+            </div>
 
 
 
@@ -77,7 +72,14 @@
             });
     }) 
        </script>
-      
+
+
+      <script>
+          var cliente = document.getElementById('cliente');
+          cliente.addEventListener('change',function(){
+              document.getElementById('dias').focus();
+          })
+      </script>
     @endpush
    
 </div>

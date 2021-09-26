@@ -1,11 +1,25 @@
 @extends('admin.index')
 
-@section('title','Proveedores')
+@section('title','Proveedores | Nuevo')
 @section('css')
 
 
 @section('content')
-<h1>Proveedor nuevo</h1>
+
+<div class="row">
+    <div class="col-8"><h2>Proveedor nuevo</h2></div>
+    <div class="col-4 mb-2">
+        <a href="{{route('proveedor.nuevo')}}">
+            <x-adminlte-button class="float-right mr-2 mt-2" theme="success"
+            label="Nuevo" id="btnNuevo" />
+        </a>
+        <a href="{{route('proveedor.index')}}">
+            <x-adminlte-button class="float-right mr-2 mt-2" theme="danger"
+            label="Volver" id="btnVolver" />
+        </a>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-body">
         <form action="{{route('proveedor.guardar')}}" method="post">
