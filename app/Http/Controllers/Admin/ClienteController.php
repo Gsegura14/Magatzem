@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ClienteController extends Controller
 {
@@ -18,18 +19,6 @@ class ClienteController extends Controller
     }
 
     public function store(Request $request){
-
-        // $request->validate([
-        //     'cliente' => 'required',
-        //     'direccion' => 'required',
-        //     'cp' =>'required|max:5',
-        //     'poblacion' =>'required|max:45',
-        //     'provincia' =>'required|max:35',
-        //     'telefono' =>'required|max:9',
-        //     'dni' => 'required|max:9',
-        //     'email' => 'required'
-
-        // ]);
 
         $cliente = new Cliente();
 
@@ -50,18 +39,6 @@ class ClienteController extends Controller
 
     public function update(Request $request, Cliente $cliente){
 
-
-        // $request->validate([
-        //     'cliente' => 'required',
-        //     'direccion' => 'required',
-        //     'cp' =>'required|max:5',
-        //     'poblacion' =>'required|max:45',
-        //     'provincia' =>'required|max:35',
-        //     'telefono' =>'required|max:9',
-        //     'dni' => 'required|max:9',
-        //     'email' => 'required'
-
-        // ]);
 
         $cliente->nombre    = $request->cliente;
         $cliente->domicilio = $request->domicilio;
@@ -86,6 +63,13 @@ class ClienteController extends Controller
     public function show(Cliente $cliente){
 
         return view('admin.clientes.ver',compact('cliente'));
+    }
+
+    public function exportPDF(){
+
+            $clientes = Cliente::all();
+            $pdf = PDF::loadView('admin.pdf.clientes',compact('clientes'));
+            return $pdf->download('clientes.pdf');
     }
 
 

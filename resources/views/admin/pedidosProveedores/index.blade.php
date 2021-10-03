@@ -9,6 +9,9 @@
 <div class="row">
     <div class="col-8"><h1>Pedidos Proveedores</h1></div>
     <div class="col-4 mb-2">
+        <a href="{{ route('pedidosProveedores.pdf') }}">
+            <x-adminlte-button class="float-right mr-2 mt-2" theme="danger"  id="btnPdf" icon="fa fa-download" />
+        </a>
         <a href="{{route('admin')}}">
             <x-adminlte-button class="float-right mr-2 mt-2" theme="danger"
             label="Inicio" id="btnInicio"/>
@@ -32,7 +35,6 @@
                     <th>Fecha Servicio</th>
                     <th>Total</th>
                     <th></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -44,16 +46,34 @@
                     <td>{{$cabecera->f_servicio}}</td>
                     <td>{{$cabecera->total}}</td>
                     <td>
-                        <form action="{{route('pedidoProveedor.ver',$cabecera)}}" method="GET">
-                            <x-adminlte-button class="btn-flat" type="submit" theme="primary" icon="fas fa-eye" /> 
-                            @csrf
-                        </form>
-                    </td>
-                    <td>
-                        <form action="{{route('pedidoProveedor.destroy',$cabecera)}}" method="POST">
-                            <x-adminlte-button class="btn-flat" type="submit" theme="danger" icon="fas fa-trash" />
-                            @method('delete') @csrf
-                        </form>
+
+                        <ul class="list-group list-group-horizontal float-right">
+                            <li class="border-0 mr-4">
+                                <form action="{{route('pedidoProveedor.ver',$cabecera)}}" method="GET">
+                                    <x-adminlte-button class="btn-flat" type="submit" theme="primary" icon="fas fa-eye" /> 
+                                    @csrf
+                                </form>
+                            </li>
+                            <li class="border-0 mr-4">
+                                <form action="{{route('pedidoProveedor.destroy',$cabecera)}}" method="POST">
+                                    <x-adminlte-button class="btn-flat" type="submit" theme="danger" icon="fas fa-trash" />
+                                    @method('delete') @csrf
+                                </form>
+                            </li>
+                            <li class="border-0 mr-4">
+                                <a href="{{ route('pedidoProveedor.pdf', $cabecera) }}">
+                                    <x-adminlte-button theme="danger" id="btnPdf"
+                                        icon="fa fa-download" />
+                                </a>
+                            </li>
+                        </ul>
+
+
+                        
+                
+                
+                        
+
                     </td>
                 </tr>
                     

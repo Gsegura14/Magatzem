@@ -21,7 +21,7 @@
 
                                     <li class="list-group-item"><input type="checkbox" value="{{$talla->id}}"
                                             @if(in_array($talla->id,json_decode($tallas_select)))
-                                        checked='checked' @endif name="tallas[]">
+                                        checked='checked' selected='selected' @endif name="tallas[]">
                                         {{$talla->talla}}</li>
                                 </ul>
                             </div>

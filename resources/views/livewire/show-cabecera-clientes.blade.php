@@ -4,6 +4,9 @@
             <h1>Cliente</h1>
         </div>
         <div class="col-4">
+            <a href="{{ route('pedidoCliente.pdf',$pedido) }}">
+                <x-adminlte-button class="float-right mr-2 mt-2" theme="danger"  id="btnPdf" icon="fa fa-download" />
+            </a>
             <x-adminlte-button class="float-right mr-2 mt-2" theme="danger" wire:click="salir()" label="Salir" id="btnSalir"/>
            <a href="{{route('pedidoCliente.nuevo')}}"><x-adminlte-button class="float-right mr-2 mt-2" theme="success" label="Nuevo" id="btnNuevo" /></a> 
         </div>

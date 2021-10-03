@@ -8,7 +8,26 @@
 @endsection
 
 @section('content')
-<h1>Stock</h1>
+<div>
+    <div class="row">
+        <div class="col-8">
+            <h1>Stock</h1>
+        </div>
+        <div class="col-4">
+            <a href="{{ Route('admin')}}"><x-adminlte-button class="float-right mr-2 mt-2" theme="danger" label="Salir" id="btnSalir"/></a>
+            <a href="{{ Route('stock.pdf') }}">
+                <x-adminlte-button class="float-right mr-2 mt-2" theme="danger"  id="btnPdf" icon="fa fa-download" />
+            </a>
+            <a href="{{ route('productos.nuevo')}}">
+                <x-adminlte-button class="float-right mr-2 mt-2" theme="primary" label="Nuevo"></x-adminlte-button>
+            </a>
+            
+
+        </div>
+
+
+    </div>
+</div>
 <div class="card">
     <div class="card-body">
         
@@ -23,8 +42,6 @@
                     <th>Pedido</th>
                     <th>Vendido</th>
                     <th>Stock</th>
-                    {{-- <th></th>
-                    <th></th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -38,17 +55,6 @@
                     <td>{{$stock->pedido}}</td>
                     <td>{{$stock->vendido}}</td>
                     <td>{{$stock->stock}}</td>
-
-                    {{-- <td>
-                        <form action="" method="GET">
-                            <x-adminlte-button class="btn-flat" type="submit" theme="primary" icon="fas fa-eye" /> @csrf
-                        </form>
-                    </td>
-                    <td>
-                        <form action="" method="POST">
-                            <x-adminlte-button class="btn-flat" type="submit" theme="danger" icon="fas fa-trash" />
-                            @method('delete') @csrf</form>
-                    </td> --}}
                 </tr>
                 @endforeach
             </tbody>
@@ -57,7 +63,7 @@
 
     </div>
 </div>
-<div class="row">
+{{-- <div class="row">
     <div class="col-2">
         <form action="{{route('productos.nuevo')}}" method="GET">
             <x-adminlte-button class="btn-flat" type="submit" label="Nuevo" theme="success" icon="fas fa-lg fa-save" />
@@ -69,7 +75,7 @@
             <x-adminlte-button class="btn-flat" label="PDF" theme="danger" icon="fa fa-file-pdf" />
         </form>
     </div>
-</div>
+</div> --}}
 
 
 @endsection

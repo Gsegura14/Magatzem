@@ -8,6 +8,8 @@ use App\Models\Producto;
 use App\Models\Stock;
 use App\Models\Talla;
 use JeroenNoten\LaravelAdminLte\Components\Widget\Alert;
+use Barryvdh\DomPDF\Facade as PDF;
+
 
 class StockController extends Controller
 {
@@ -138,6 +140,13 @@ class StockController extends Controller
      * @return \Illuminate\Http\Response
      */
    
+
+    }
+
+    public function exportPDF(){
+        $stocks = Stock::all();
+        $pdf = PDF::loadView('admin.pdf.stock',compact('stocks'));
+        return $pdf->download('stock.pdf');
 
     }
 }

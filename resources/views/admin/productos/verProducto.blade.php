@@ -133,7 +133,7 @@
                         @foreach ($tallas as $talla)
                             <option value="{{ $talla->id }}" @foreach ($stockProducto as $stock)
                                 @if ($talla->id == $stock->talla_id)
-                                    selected="selected"
+                                    selected="selected" checked='checked'
                                 @endif
                         @endforeach
                         >{{ $talla->id . ' ' . $talla->talla }}

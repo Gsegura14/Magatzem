@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\ProveedorController;
 use App\Http\Controllers\Admin\CabeceraproveedoresController;
 use App\Http\Controllers\Admin\CabeceraPedidoClienteController;
 use App\Http\Controllers\Admin\StockController;
+use App\Http\Controllers\Admin\pedidoClienteController;
+use App\Http\Controllers\Admin\pedidoProveedorController;
 use App\Models\CabeceraCliente;
 
 Route::get('',[HomeController::class,'index'])->name('admin');
@@ -22,15 +24,19 @@ Route::post('cliente/guardar',[ClienteController::class,'store'])->name('cliente
 Route::get('cliente/modificar/{cliente}',[ClienteController::class,'show'])->name('cliente.ver');
 Route::put('cliente/modificar/{cliente}',[ClienteController::class,'update'])->name('cliente.update');
 Route::delete('cliente/eliminar/{cliente}',[ClienteController::class,'destroy'])->name('cliente.destroy');
+Route::get('clientes/list/pdf',[ClienteController::class,'exportPDF'])->name('clientes.pdf');
+
 
 Route::get('pedidos/clientes',[CabeceraPedidoClienteController::class,'index'])->name('pedidosclientes.index');
 Route::get('pedidos/clientes/nuevo',[CabeceraPedidoClienteController::class,'create'])->name('pedidoCliente.nuevo');
 Route::get('pedido/clientes/modificar/{pedido}',[CabeceraPedidoClienteController::class,'show'])->name('pedidoCliente.show');
 Route::delete('pedido/clientes/delete/{pedido}',[CabeceraPedidoClienteController::class,'destroy'])->name('pedidoCliente.destroy'); 
+Route::get('pedidos/clientes/pdf',[CabeceraPedidoClienteController::class,'exportPDF'])->name('pedidosClientes.pdf');
 
 Route::get('stock',[StockController::class,'index'])->name('stock.index');
 Route::get('stock/{producto}/{tallasID}/{stock}',[StockController::class,'create'])->name('stock.create');
 Route::get('stock/{producto}/{tallasID}',[StockController::class,'update'])->name('stock.update');
+Route::get('stock/pdf',[StockController::class,'exportPDF'])->name('stock.pdf');
 
 
 Route::get('proveedores',[ProveedorController::class,'index'])->name('proveedor.index');
@@ -85,3 +91,7 @@ Route::post('pedido/proveedor/guardar',[CabeceraproveedoresController::class,'st
 Route::get('pedido/proveedor/modificar/{cabecera}',[CabeceraproveedoresController::class,'show'])->name('pedidoProveedor.ver');
 Route::put('pedido/proveedor/modificar/{proveedor}',[CabeceraproveedoresController::class,'update'])->name('pedidoProveedor.update');
 Route::delete('pedido/proveedor/eliminar/{cabecera}',[CabeceraproveedoresController::class,'destroy'])->name('pedidoProveedor.destroy');
+Route::get('pedidos/proveedores/pdf',[CabeceraproveedoresController::class,'exportPDF'])->name('pedidosProveedores.pdf');
+
+Route::get('pedido/cliente/pdf/{pedido}',[pedidoClienteController::class,'exportPDF'])->name('pedidoCliente.pdf');
+Route::get('pedido/proveedor/pdf/{cabecera}',[pedidoProveedorController::class,'exportPDF'])->name('pedidoProveedor.pdf');

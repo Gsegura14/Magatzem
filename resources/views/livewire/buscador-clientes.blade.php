@@ -5,6 +5,7 @@
             <h1>Pedido Nuevo</h1>
         </div>
         <div class="col-4">
+            
             <x-adminlte-button class="float-right mr-2 mt-2" theme="danger" wire:click="salir()" label="Salir"
                 id="btnSalir" />
             <x-adminlte-button class="float-right mr-2 mt-2" theme="success" onclick="location.reload()" label="Nuevo"

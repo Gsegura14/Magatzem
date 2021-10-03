@@ -118,14 +118,15 @@ class ProductoController extends Controller
             'color' => 'required',
             'descripcion_corta' => 'required',
             'precio_coste' => 'required',
-            'precio_venta' => 'required'
+            'precio_venta' => 'required',
+            'selectTallas' => 'required'
         ]);
 
         $tipoId = $request->get('selTipo');
         $marcaId = $request->get('selMarca');
         $madeIn = $request->get('selPais');
         $refSug = $request->modelo . "-" . $request->color;
-
+             // Guarda modificación del registro padre
         $producto->modelo = $request->modelo;
         $producto->color = $request->color;
         $producto->referencia_sugerida = $refSug;

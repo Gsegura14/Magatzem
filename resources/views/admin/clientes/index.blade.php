@@ -7,7 +7,26 @@
 @endsection   
 
 @section('content')
-<h1>Clientes</h1>
+<div class="row">
+    <div class="col-8">
+        <h1>Clientes</h1>
+    </div>
+    <div class="col-4 mb-2">
+        <a href="{{ route('clientes.pdf') }}">
+            <x-adminlte-button class="float-right mr-2 mt-2" theme="danger"  id="btnPdf" icon="fa fa-download" />
+        </a>
+        <a href="{{ route('admin') }}">
+            <x-adminlte-button class="float-right mr-2 mt-2" theme="primary" label="Inicio" id="btnInicio" />
+        </a>
+        <a href="{{ route('cliente.nuevo') }}">
+            <x-adminlte-button class="float-right mr-2 mt-2" theme="success" label="Nuevo" id="btnNuevo" />
+        </a>
+        
+
+    </div>
+
+</div>
+
 <div class="card">
     <div class="card-body">
 <table class="table table-striped" id="clientes">

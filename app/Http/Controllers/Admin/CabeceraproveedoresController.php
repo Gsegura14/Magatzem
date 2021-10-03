@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cabeceraproveedores as pedidosProveedores;
+use App\Models\Cabeceraproveedores;
+use Barryvdh\DomPDF\Facade as PDF; 
 
 class CabeceraproveedoresController extends Controller
 {
@@ -85,5 +87,12 @@ class CabeceraproveedoresController extends Controller
     {
         $cabecera->delete();
         return redirect()->route('pedidoProveedor.index');
+    }
+
+    public function exportPDF(){
+
+        $pedidos = Cabeceraproveedores::all();
+        $pdf = PDF::loadView('admin.pdf.pedidosProveedores',compact('pedidos'));
+        return $pdf->download('pedidosProveedores.pdf');
     }
 }

@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\CabeceraCliente;
+use Illuminate\Http\Request;
+use App\Models\Cabeceraproveedores;
+use App\Models\Cliente;
+use App\Models\lineaspedidocliente;
 use Barryvdh\DomPDF\Facade as PDF;
 
-class CabeceraPedidoClienteController extends Controller
+
+class pedidoClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +20,10 @@ class CabeceraPedidoClienteController extends Controller
      */
     public function index()
     {
-        $pedidosclientes = CabeceraCliente::all();
-        return view('admin.pedidosClientes.index',compact('pedidosclientes'));
+        //
     }
+
+ 
 
     /**
      * Show the form for creating a new resource.
@@ -27,7 +32,7 @@ class CabeceraPedidoClienteController extends Controller
      */
     public function create()
     {
-        return view('admin.pedidosClientes.nuevo');
+        //
     }
 
     /**
@@ -47,10 +52,9 @@ class CabeceraPedidoClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(CabeceraCliente $pedido)
+    public function show($id)
     {
-        
-        return view('admin.pedidosClientes.verPedido',compact('pedido'));
+        //
     }
 
     /**
@@ -82,19 +86,18 @@ class CabeceraPedidoClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CabeceraCliente $pedido)
+    public function destroy($id)
     {
-        $pedido->delete();
-        return redirect()->route('pedidosclientes.index');
+        //
     }
 
-    public function exportPDF(){
+    public function exportPDF(CabeceraCliente $pedido){
 
-        $pedidos = CabeceraCliente::all();
-        $pdf = PDF::loadView('admin.pdf.pedidosclientes',compact('pedidos'));
-        return $pdf->download('pedidosClientes.pdf');
+        $cliente = $pedido->cliente;
+        $lineas = lineaspedidocliente::where('pedido_id',$pedido->id)->get();
+        $pdf = PDF::loadView('admin.pdf.pedidoCliente',compact('pedido','cliente','lineas'));
+        return $pdf->download('pedidoCliente.pdf');
     }
 
-    
 
 }
