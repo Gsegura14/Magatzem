@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\lineapedidos;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Stock;
@@ -54,6 +55,7 @@ class StockController extends Controller
         return redirect()->route('productos.index');
     }
 
+    
     /**
      * Store a newly created resource in storage.
      *

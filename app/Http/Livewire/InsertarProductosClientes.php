@@ -71,6 +71,10 @@ class InsertarProductosClientes extends Component
             $linea->precio = $this->precio;
             $linea->total =$this->subtotal;
             $linea->save();
+            //Actualización de stock
+            
+            $this->actualizaStock($linea);
+
             $this->emit('verAddLinea',$this->pedido_id);
             
         }
@@ -83,5 +87,16 @@ class InsertarProductosClientes extends Component
         $pedido = CabeceraCliente::where('n_pedido',$n_pedido)->first();
         $this->pedido_id = $pedido->id;
         $this->cliente_id = $cliente_id;
+    }
+// Función para actualizar el stock
+    protected function actualizaStock($linea){
+        $productoID = $linea->stock_id;
+            $cantidad_actual = $linea->stock->stock;
+            $cantidad_vendido = $linea->stock->vendido;
+            $cantidadLinea = $linea->cantidad;
+            $cantidad_actual = $cantidad_actual - $cantidadLinea;
+            $cantidad_vendido = $cantidad_vendido + $cantidadLinea;
+            Stock::where('id',$productoID)->update(['stock' => $cantidad_actual,
+            'vendido' => $cantidad_vendido]);
     }
 }

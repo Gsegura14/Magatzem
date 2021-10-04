@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\lineapedidos;
-
+use App\Models\Stock;
 use Livewire\Component;
 
 class ShowLineasProveedores extends Component
@@ -31,6 +31,18 @@ class ShowLineasProveedores extends Component
         $pedido = $this->cabecera;
         $linea = lineapedidos::where('id',$linea_id)->first();
         $linea->delete();
+        $this->actualizaStock($linea);
         $this->emit('ModActualizaSumaTotal',$pedido->id);
     }
+
+    protected function actualizaStock($linea){
+        $productoID = $linea->stock_id;
+        $cantidad_actual = $linea->stock->stock;
+        $cantidad_pedido = $linea->stock->pedido;
+        $cantidadLinea = $linea->cantidad;
+        $cantidad_actual = $cantidad_actual - $cantidadLinea;
+        $cantidad_pedido = $cantidad_pedido - $cantidadLinea;
+        Stock::where('id',$productoID)->update(['stock' => $cantidad_actual,
+        'pedido' => $cantidad_pedido]);
+}
 }

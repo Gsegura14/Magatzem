@@ -71,6 +71,13 @@ class InsertarProductosProveedores extends Component
             $linea->precio = $this->precio;
             $linea->total =$this->subtotal;
             $linea->save();
+            // redirect()->route('actualizar.stock',$linea);
+
+            //Actualización de stock
+            $this->actualizaStock($linea);
+         
+
+       //Se añade la linea 
             $this->emit('verAddLinea',$this->pedido_id);
             
         }
@@ -84,4 +91,17 @@ class InsertarProductosProveedores extends Component
         $this->pedido_id = $pedido->id;
         $this->proveedor_id = $proveedor_id;
     }
+
+    // Funnción para actualizar el stock
+        protected function actualizaStock($linea){
+            $productoID = $linea->stock_id;
+            $cantidad_actual = $linea->stock->stock;
+            $cantidad_pedido = $linea->stock->pedido;
+            $cantidadLinea = $linea->cantidad;
+            $cantidad_actual = $cantidad_actual + $cantidadLinea;
+            $cantidad_pedido = $cantidad_pedido + $cantidadLinea;
+            Stock::where('id',$productoID)->update(['stock' => $cantidad_actual,
+            'pedido' => $cantidad_pedido]);
+        }
+    
 }

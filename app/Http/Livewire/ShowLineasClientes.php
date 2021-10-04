@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\lineaspedidocliente;
-
+use App\Models\Stock;
 use Livewire\Component;
 
 class ShowLineasClientes extends Component
@@ -31,6 +31,18 @@ class ShowLineasClientes extends Component
         $pedido = $this->pedido;
         $linea = lineaspedidocliente::where('id',$linea_id)->first();
         $linea->delete();
+        $this->actualizaStock($linea);
         $this->emit('actualizaSumaTotal',$pedido->id);
     }
+
+    protected function actualizaStock($linea){
+        $productoID = $linea->stock_id;
+        $cantidad_actual = $linea->stock->stock;
+        $cantidad_vendido = $linea->stock->vendido;
+        $cantidadLinea = $linea->cantidad;
+        $cantidad_actual = $cantidad_actual + $cantidadLinea;
+        $cantidad_vendido = $cantidad_vendido - $cantidadLinea;
+        Stock::where('id',$productoID)->update(['stock' => $cantidad_actual,
+        'vendido' => $cantidad_vendido]);
+}
 }
