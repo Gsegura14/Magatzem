@@ -79,8 +79,8 @@
 
                         <td class="small">{{ $linea->n_linea }}</td>
                         <td class="small">{{ $linea->stock->producto->modelo }}</td>
-                        <td class="small">{{ $linea->stock->producto->referencia_sugerida }}</td>
-                        <td class="small">{{ $linea->stock->producto->descripcion_corta }}</td>
+                        <td class="small">{{ $linea->stock->sku }}</td>
+                        <td class="small">{{ $linea->stock->producto->descripcion_corta }}<br>Talla : {{$linea->stock->talla->talla}}</td>
                         <td class="small text-center">{{ $linea->cantidad }}</td>
                         <td class="small text-right">{{ $linea->precio }}€</td>
                         <td class="small text-right">{{ $linea->total }}€</td>

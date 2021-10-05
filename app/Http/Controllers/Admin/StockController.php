@@ -10,7 +10,8 @@ use App\Models\Stock;
 use App\Models\Talla;
 use JeroenNoten\LaravelAdminLte\Components\Widget\Alert;
 use Barryvdh\DomPDF\Facade as PDF;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\StockExport;
 
 class StockController extends Controller
 {
@@ -150,5 +151,12 @@ class StockController extends Controller
         $pdf = PDF::loadView('admin.pdf.stock',compact('stocks'));
         return $pdf->download('stock.pdf');
 
+    }
+
+    public function exportExcel(){
+
+        $hora = now();
+        $archivo = 'stock_'.$hora.'.xlsx';
+        return Excel::download(new StockExport,$archivo);
     }
 }

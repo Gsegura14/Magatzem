@@ -18,6 +18,9 @@
             <a href="{{ Route('stock.pdf') }}">
                 <x-adminlte-button class="float-right mr-2 mt-2" theme="danger"  id="btnPdf" icon="fa fa-download" />
             </a>
+            <a href="{{ Route('stock.excel') }}">
+                <x-adminlte-button class="float-right mr-2 mt-2" theme="success"  id="btnExcel" icon="fa fa-file-excel" />
+            </a>
             <a href="{{ route('productos.nuevo')}}">
                 <x-adminlte-button class="float-right mr-2 mt-2" theme="primary" label="Nuevo"></x-adminlte-button>
             </a>

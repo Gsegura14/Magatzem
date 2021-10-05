@@ -37,7 +37,7 @@ Route::get('stock',[StockController::class,'index'])->name('stock.index');
 Route::get('stock/{producto}/{tallasID}/{stock}',[StockController::class,'create'])->name('stock.create');
 Route::get('stock/{producto}/{tallasID}',[StockController::class,'update'])->name('stock.update');
 Route::get('stock/pdf',[StockController::class,'exportPDF'])->name('stock.pdf');
-
+Route::get('stock/excel',[StockController::class,'exportExcel'])->name('stock.excel');
 
 Route::get('proveedores',[ProveedorController::class,'index'])->name('proveedor.index');
 Route::get('proveedor/nuevo',[ProveedorController::class,'create'])->name('proveedor.nuevo');
