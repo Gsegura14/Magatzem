@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Stock extends Model
 {
     use HasFactory;
+    protected $fillable = ['codigo'];
     public function talla(){
         return $this->belongsTo('App\Models\Talla');
     }

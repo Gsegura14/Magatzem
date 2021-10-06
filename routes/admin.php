@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ImagenController;
 use App\Http\Controllers\Admin\ProveedorController;
 use App\Http\Controllers\Admin\CabeceraproveedoresController;
 use App\Http\Controllers\Admin\CabeceraPedidoClienteController;
+use App\Http\Controllers\Admin\codigosController;
 use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\pedidoClienteController;
 use App\Http\Controllers\Admin\pedidoProveedorController;
@@ -95,3 +96,6 @@ Route::get('pedidos/proveedores/pdf',[CabeceraproveedoresController::class,'expo
 
 Route::get('pedido/cliente/pdf/{pedido}',[pedidoClienteController::class,'exportPDF'])->name('pedidoCliente.pdf');
 Route::get('pedido/proveedor/pdf/{cabecera}',[pedidoProveedorController::class,'exportPDF'])->name('pedidoProveedor.pdf');
+
+Route::get('codigos/config',[codigosController::class,'config'])->name('config.show');
+Route::get('codigos/generar',[codigosController::class,'generar'])->name('generar.codigos');
