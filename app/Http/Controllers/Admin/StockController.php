@@ -12,6 +12,7 @@ use JeroenNoten\LaravelAdminLte\Components\Widget\Alert;
 use Barryvdh\DomPDF\Facade as PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StockExport;
+use App\Imports\StockImport;
 
 class StockController extends Controller
 {
@@ -158,5 +159,17 @@ class StockController extends Controller
         $hora = now();
         $archivo = 'stock_'.$hora.'.xlsx';
         return Excel::download(new StockExport,$archivo);
+    }
+
+    
+    public function frmImportar(){
+        return view('admin.stock.importStock');
+    }
+    public function importar(Request $request){
+
+        $archivo = $request->file('stockImport');
+        Excel::import(new StockImport,$archivo);
+
+        return redirect()->route('stock.index');
     }
 }

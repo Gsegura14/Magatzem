@@ -15,7 +15,7 @@ use App\Http\Controllers\Admin\codigosController;
 use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\pedidoClienteController;
 use App\Http\Controllers\Admin\pedidoProveedorController;
-use App\Models\CabeceraCliente;
+use App\Http\Controllers\Admin\configController;
 
 Route::get('',[HomeController::class,'index'])->name('admin');
 
@@ -39,6 +39,8 @@ Route::get('stock/{producto}/{tallasID}/{stock}',[StockController::class,'create
 Route::get('stock/{producto}/{tallasID}',[StockController::class,'update'])->name('stock.update');
 Route::get('stock/pdf',[StockController::class,'exportPDF'])->name('stock.pdf');
 Route::get('stock/excel',[StockController::class,'exportExcel'])->name('stock.excel');
+Route::get('stock/importar',[StockController::class,'frmImportar'])->name('show.stock.import');
+Route::post('stock/import',[StockController::class,'importar'])->name('stock.import');
 
 Route::get('proveedores',[ProveedorController::class,'index'])->name('proveedor.index');
 Route::get('proveedor/nuevo',[ProveedorController::class,'create'])->name('proveedor.nuevo');
@@ -53,6 +55,9 @@ Route::post('productos/guardar',[ProductoController::class,'guardar'])->name('pr
 Route::get('productos/modificar/{producto}',[ProductoController::class,'verProducto'])->name('productos.ver');
 Route::put('productos/modificar/{producto}',[ProductoController::class,'guardarMod'])->name('productos.guardarMod');
 Route::delete('productos/eliminar/{producto}',[ProductoController::class,'destroy'])->name('productos.destroy');
+Route::get('productos/importar',[ProductoController::class,'frmImportar'])->name('show.productos.import');
+Route::post('productos/import',[ProductoController::class,'importar'])->name('productos.import');
+Route::get('productos/excel',[ProductoController::class,'exportExcel'])->name('productos.excel');
 
 Route::get('tipos',[TipoController::class,'index'])->name('tipos.index');
 Route::post('tipos/guardar',[TipoController::class,'guardar'])->name('tipos.guardar');
@@ -99,3 +104,5 @@ Route::get('pedido/proveedor/pdf/{cabecera}',[pedidoProveedorController::class,'
 
 Route::get('codigos/config',[codigosController::class,'config'])->name('config.show');
 Route::get('codigos/generar',[codigosController::class,'generar'])->name('generar.codigos');
+
+Route::get('reset/bd',[configController::class,'resetearBD'])->name('reset.bd');

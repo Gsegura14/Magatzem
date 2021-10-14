@@ -15,7 +15,7 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('producto_id');
+            $table->unsignedBigInteger('producto_id')->nullable();
                 $table->foreign('producto_id')
                     ->references('id')
                     ->on('productos')
@@ -23,7 +23,7 @@ class CreateStocksTable extends Migration
 
                    
                                                
-            $table->unsignedBigInteger('talla_id');
+            $table->unsignedBigInteger('talla_id')->nullable();
                 $table->foreign('talla_id')
                     ->references('id')
                     ->on('tallas')

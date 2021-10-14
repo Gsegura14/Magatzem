@@ -8,6 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     use HasFactory;
+    protected $fillable = [
+            'modelo',
+            'color',
+            'referencia_sugerida',
+            'descripcion_corta',
+            'marca_id',
+            'tipo_id',
+            'precio_coste',
+            'precio_vta',
+            'made_in',
+            'created_at',
+            'updated_at',
+            'imagen_id'
+    ] ;
     
     // Relación de uno a muchos (Inversa)
     public function marca(){

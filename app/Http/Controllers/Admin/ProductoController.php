@@ -10,6 +10,12 @@ use App\Models\Marca;
 use App\Models\Imagen;
 use App\Models\Talla;
 use App\Models\Stock;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ProductosImport;
+use App\Exports\ProductoExport;
+
+
+
 
 class ProductoController extends Controller
 {
@@ -152,4 +158,28 @@ class ProductoController extends Controller
             $tallasID = implode(',', $request->input('selectTallas'));
             return redirect()->route('stock.update', compact('producto', 'tallasID'));
     }
+
+
+
+public function exportExcel(){
+    
+    $hora = now();
+    $archivo = 'productos_'.$hora.'.xlsx';
+    return Excel::download(new ProductoExport,$archivo);
+
+}
+
+
+public function frmImportar(){
+    return view('admin.productos.importProductos');
+}
+
+public function importar(Request $request){
+
+        $archivo = $request->file('productosImport');
+        Excel::import(new ProductosImport,$archivo);
+
+        return redirect()->route('productos.index');;
+}
+
 }

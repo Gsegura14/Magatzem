@@ -35,7 +35,7 @@ class codigosController extends Controller
         
 
         $Codempresa = '84';
-        $Codmarca   = '41120';
+        $Codmarca   = '35541';
         $codigo = $Codempresa.$Codmarca.$codProducto;
         $par = $this->numeroPar($codigo);
         $impar = $this->numeroImpar($codigo);

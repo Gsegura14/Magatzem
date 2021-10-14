@@ -8,7 +8,25 @@
 @endsection
 
 @section('content')
-<h1>Productos</h1>
+
+<div>
+    <div class="row">
+        <div class="col-8">
+            <h1>Productos</h1>
+        </div>
+        <div class="col-4">
+            <a href="{{ Route('admin')}}"><x-adminlte-button class="float-right mr-2 mt-2" theme="danger" label="Salir" id="btnSalir"/></a>
+            <a href="{{ Route('productos.excel') }}">
+                <x-adminlte-button class="float-right mr-2 mt-2" theme="success"  id="btnExcel" icon="fa fa-file-excel" />
+            </a>
+            <a href="{{ route('productos.nuevo')}}">
+                <x-adminlte-button class="float-right mr-2 mt-2" theme="primary" label="Nuevo"></x-adminlte-button>
+            </a>
+
+        </div>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-body">
         
@@ -61,10 +79,7 @@
 
     </div>
 </div>
-<form action="{{route('productos.nuevo')}}" method="GET">
-    <x-adminlte-button class="btn-flat" type="submit" label="Nuevo" theme="success" icon="fas fa-lg fa-save" />
-    @csrf
-</form>
+
 @endsection
 
 <!-- Scripts -->
