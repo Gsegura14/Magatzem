@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStocksTable extends Migration
+class CreateStockOfertasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class CreateStocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('stocks', function (Blueprint $table) {
+        Schema::create('stock_ofertas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('oferta_id');
+            $table->foreign('oferta_id')
+                ->references('id')
+                ->on('cabecera_campania_ofertas')
+                ->onDelete('cascade');
             $table->unsignedBigInteger('producto_id')->nullable();
             $table->foreign('producto_id')
                 ->references('id')
@@ -35,6 +40,7 @@ class CreateStocksTable extends Migration
             $table->integer('pedido');
             $table->integer('vendido');
             $table->integer('stock');
+
             $table->timestamps();
         });
     }
@@ -46,6 +52,6 @@ class CreateStocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('stock_ofertas');
     }
 }

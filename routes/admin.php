@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\pedidoClienteController;
 use App\Http\Controllers\Admin\pedidoProveedorController;
 use App\Http\Controllers\Admin\configController;
+use App\Http\Controllers\Admin\CabeceraCampaniaOfertaController;
 
 Route::get('',[HomeController::class,'index'])->name('admin');
 
@@ -106,3 +107,5 @@ Route::get('codigos/config',[codigosController::class,'config'])->name('config.s
 Route::get('codigos/generar',[codigosController::class,'generar'])->name('generar.codigos');
 
 Route::get('reset/bd',[configController::class,'resetearBD'])->name('reset.bd');
+
+Route::get('campanyas/preparar-oferta',[CabeceraCampaniaOfertaController::class,'crearOferta'])->name('crear.oferta.campanya');

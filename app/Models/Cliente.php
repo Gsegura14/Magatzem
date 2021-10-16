@@ -13,4 +13,8 @@ class Cliente extends Model
     public function Cabeceracliente(){
         return $this->hasOne('App\Models\CabeceraCliente');
     }
+
+    public function CabeceraCampaniaOferta(){
+        return $this->hasOne('App\Models\CabeceraCampaniaOferta');
+    }
 }

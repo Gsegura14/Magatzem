@@ -395,7 +395,27 @@ return [
                 
                 
             ],
+            
+
+        
         ],
+        [
+            'text'    => 'Campañas',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Preparar Oferta',
+                    'url'  => 'admin/campanyas/preparar-oferta',
+                ],
+                
+                
+                
+            ],
+        ],
+    
+
+
+
         ['header' => 'labels'],
         [
             'text'       => 'important',

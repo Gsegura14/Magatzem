@@ -12,6 +12,7 @@ class LineasPedidoClientes extends Component
     public $pedido_id;
     
     public $lineas = [];
+    
 
     public function render()
     {   
