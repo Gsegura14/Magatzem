@@ -15,16 +15,16 @@ class CreateCabeceraCampaniaOfertasTable extends Migration
     {
         Schema::create('cabecera_campania_ofertas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cliente_id');
+            $table->unsignedBigInteger('cliente_id')->nullable();
                 $table->foreign('cliente_id')
                     ->references('id')
                     ->on('clientes')
                     ->onDelete('cascade');
 
-            $table->date('fecha_inicio');
-            $table->integer('cantidad_unidades');
-            $table->integer('cant_modelos');
-            $table->integer('cant_refs');
+            $table->date('fecha_inicio')->nullable();
+            $table->integer('cantidad_unidades')->nullable();
+            $table->integer('cant_modelos')->nullable();
+            $table->integer('cant_refs')->nullable();
             
 
             

@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\pedidoClienteController;
 use App\Http\Controllers\Admin\pedidoProveedorController;
 use App\Http\Controllers\Admin\configController;
 use App\Http\Controllers\Admin\CabeceraCampaniaOfertaController;
+use App\Http\Controllers\Admin\DatatableController;
 
 Route::get('',[HomeController::class,'index'])->name('admin');
 
@@ -109,3 +110,5 @@ Route::get('codigos/generar',[codigosController::class,'generar'])->name('genera
 Route::get('reset/bd',[configController::class,'resetearBD'])->name('reset.bd');
 
 Route::get('campanyas/preparar-oferta',[CabeceraCampaniaOfertaController::class,'crearOferta'])->name('crear.oferta.campanya');
+
+Route::get('datatable/stockoferta',[DatatableController::class,'stockoferta'])->name('datatable.stockoferta');
