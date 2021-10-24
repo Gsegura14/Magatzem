@@ -10,4 +10,8 @@ class CabeceraCampaniaOfertaController extends Controller
     public function crearOferta(){
         return view('admin.oferta.nueva');
     }
+    public function frmOferta($ofertaId){
+        return view('admin.oferta.crear',compact('ofertaId'));
+    }
+
 }

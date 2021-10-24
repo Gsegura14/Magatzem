@@ -110,5 +110,6 @@ Route::get('codigos/generar',[codigosController::class,'generar'])->name('genera
 Route::get('reset/bd',[configController::class,'resetearBD'])->name('reset.bd');
 
 Route::get('campanyas/preparar-oferta',[CabeceraCampaniaOfertaController::class,'crearOferta'])->name('crear.oferta.campanya');
+Route::get('campanyas/editar/{ofertaId}',[CabeceraCampaniaOfertaController::class,'frmOferta'])->name('editar.oferta');
 
-Route::get('datatable/stockoferta',[DatatableController::class,'stockoferta'])->name('datatable.stockoferta');
+Route::get('datatable/stockoferta/{ofertaId}',[DatatableController::class,'stockoferta'])->name('datatable.stockoferta');

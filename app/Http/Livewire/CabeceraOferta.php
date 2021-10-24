@@ -7,12 +7,11 @@ use App\Models\Stock;
 use App\Models\CabeceraCampaniaOferta;
 use App\Models\StockOferta;
 use Livewire\Component;
-use App\Models\Producto;
+
 
 class CabeceraOferta extends Component
 {
-    //public $stockId,$cliente,$fecha,$cant_total,$cant_modelos,$cant_refs,$cliente_id,$proferta,$bloquear,$descuento,$prcoste,$prventa,$ofertaId;
-    public $cliente_id,$total,$fecha,$totalmodelos,$stockId,$cantref;
+    public $cliente_id,$total,$fecha,$totalmodelos,$stockId,$cantref,$cabeceraId;
     public $productos = [];
     public $stocks = [];
     public $control = false;
@@ -21,66 +20,34 @@ class CabeceraOferta extends Component
     
     public function render()
     {
-    
-        $cabecera = new CabeceraCampaniaOferta();
-       
-        $cabecera->save();
-        $id = $cabecera->id;
-        //$productos = $this->crearProductos($id);
-        $this->total = $this->cantUnidades();
-        $this->cantref = $this->cantRefs();
-        $this->totalmodelos = $this->cantModelos();
+        
         $clientes = Cliente::where('id',373)->get();
-        return view('livewire.cabecera-oferta',compact('clientes','cabecera'));
+        return view('livewire.cabecera-oferta',compact('clientes'));
+    
     }
+
 
  public function crearOferta(){
 
-    //$this->crearCabecera();
-   
+    $this->crearCabecera();
+    $ofertaId = $this->getCabeceraId();
+    $this->crearProductos($ofertaId);
+    return redirect()->route('editar.oferta', ['ofertaId' => $ofertaId]);
 
-
-    
-
- }
-
- protected function cantUnidades(){
-    $unidades = Stock::all()->sum('stock');
-    return $unidades;
- }
-
- protected function cantModelos(){
-
-    $modelos = Producto::all()->groupBy('modelo')->count();
-        
-    return $modelos;
- }
-
- protected function cantRefs(){
-
-    $referencias = Stock::where('stock','!=',0)->count();
-    return $referencias;
  }
 
  
 
 protected function crearCabecera(){
-
     
     $cabecera = new CabeceraCampaniaOferta();
     $cabecera->cliente_id = $this->cliente_id;
     $cabecera->fecha_inicio = $this->fecha;
-    $cabecera->cantidad_unidades = $this->cantUnidades();
-    $cabecera->cant_modelos = $this->cantModelos();
-    $cabecera->cant_refs = $this->cantRefs();
+    $cabecera->cantidad_unidades = 0;
+    $cabecera->cant_modelos = 0;
+    $cabecera->cant_refs = 0;
     $cabecera->save();
-
-
-    
-
-
-
-
+    $this->cabeceraId = $cabecera->id;
 }
 
 protected function crearProductos($id){
@@ -98,16 +65,16 @@ protected function crearProductos($id){
             $producto->stock = $stock->stock;
             $producto->save();
 
-            
-
         }
         
-        $this->verProductos($id);
+
     }
 
-    protected function verProductos($ofertaId){
-        $this->productos = StockOferta::where('oferta_id',$ofertaId)->get();
-        $this->control = true;
+
+
+    protected function getCabeceraId(){
+    
+        return $this->cabeceraId;
     }
 
 }
