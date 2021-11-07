@@ -23,8 +23,8 @@
                     <div class="row d-flex align-items-center">
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group" wire:ignore>
-                                <label>Cliente :</label>
-                                <select class="select2" style="width: 100%;" wire:model="cliente_id">
+                                <label for="cliente_id">Cliente:</label>
+                                <select class="select2" style="width: 100%;" wire:model="cliente_id" name="cliente_id">
                                     <option value="">-- Buscar cliente --</option>
                                     @foreach ($clientes as $cliente)
                                         <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>

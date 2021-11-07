@@ -14,12 +14,18 @@
     @livewire('cabecera-ofertas',['ofertaId' => $ofertaId])
 </div>
 <div>
+    @livewire('acciones-stock-ofertas', ['ofertaId' => $ofertaId])
+</div>
+
+<div>
     @livewire('tablastock-ofertas', ['ofertaId' => $ofertaId])
 </div>
+
 @stop
 
 @stop
 @section('js')
+<script src="sweetalert2.all.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>

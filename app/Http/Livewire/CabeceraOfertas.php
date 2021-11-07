@@ -9,8 +9,10 @@ use Livewire\Component;
 
 class CabeceraOfertas extends Component
 {
+    // Propiedades de la cabecera
     public $unidades,$modelos,$referencias,$ofertaId,$fecha,$cliente;
-
+  
+    
     public function render()
     {
         $this->completarCabecera($this->ofertaId);

@@ -360,6 +360,14 @@ return [
                     'text' => 'Stock',
                     'url'  => 'admin/stock',
                 ],
+                [
+                    'text' => 'Actualizar',
+                    'url'  => 'admin/stock/importar',
+                ],
+                [
+                    'text' => 'Asignar Códigos de barras',
+                    'url'  => 'admin/codigos/generar',
+                ],
                 
                 
             ],
@@ -404,9 +412,14 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
+                    'text' => 'Listado ofertas',
+                    'url'  => 'admin/campanyas/listado-ofertas',
+                ],
+                [
                     'text' => 'Preparar Oferta',
                     'url'  => 'admin/campanyas/preparar-oferta',
                 ],
+                
                 
                 
                 

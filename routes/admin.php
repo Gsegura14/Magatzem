@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\pedidoProveedorController;
 use App\Http\Controllers\Admin\configController;
 use App\Http\Controllers\Admin\CabeceraCampaniaOfertaController;
 use App\Http\Controllers\Admin\DatatableController;
+use App\Http\Livewire\AccionesStockOfertas;
 
 Route::get('',[HomeController::class,'index'])->name('admin');
 
@@ -110,6 +111,12 @@ Route::get('codigos/generar',[codigosController::class,'generar'])->name('genera
 Route::get('reset/bd',[configController::class,'resetearBD'])->name('reset.bd');
 
 Route::get('campanyas/preparar-oferta',[CabeceraCampaniaOfertaController::class,'crearOferta'])->name('crear.oferta.campanya');
+Route::get('campanyas/listado-ofertas',[CabeceraCampaniaOfertaController::class,'index'])->name('index.ofertas');
 Route::get('campanyas/editar/{ofertaId}',[CabeceraCampaniaOfertaController::class,'frmOferta'])->name('editar.oferta');
-
+Route::delete('campanyas/delete/{ofertaId}',[CabeceraCampaniaOfertaController::class,'delete'])->name('delete.oferta');
+Route::post('campanyas/editar/{ofertaId}',[CabeceraCampaniaOfertaController::class,'aplicarPrecio'])->name('oferta.aplicar');
+Route::get('campanyas/excel/{ofertaId}',[AccionesStockOfertas::class,'exportExcel'])->name('stockOferta.excel');
+Route::get('campanyas/import/{ofertaId}',[AccionesStockOfertas::class,'frmImportar'])->name('revision.stockOferta.excel');
+Route::post('campanyas/import/{ofertaId}',[AccionesStockOfertas::class,'importar'])->name('campanya.import');
 Route::get('datatable/stockoferta/{ofertaId}',[DatatableController::class,'stockoferta'])->name('datatable.stockoferta');
+

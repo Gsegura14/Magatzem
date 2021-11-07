@@ -14,7 +14,6 @@ class CabeceraOferta extends Component
     public $cliente_id,$total,$fecha,$totalmodelos,$stockId,$cantref,$cabeceraId;
     public $productos = [];
     public $stocks = [];
-    public $control = false;
 
 
     
@@ -62,7 +61,9 @@ protected function crearProductos($id){
             $producto->codigo = $stock->codigo;
             $producto->pedido = $stock->pedido;
             $producto->vendido = $stock->vendido;
-            $producto->stock = $stock->stock;
+            $producto->stock = 0;
+            $producto->precio_oferta = $stock->producto->precio_vta;
+            $producto->aceptar = 0; 
             $producto->save();
 
         }

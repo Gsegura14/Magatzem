@@ -18,7 +18,9 @@ class StockOferta extends Model
         'vendido',
         'stock',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'precio_oferta',
+        'aceptar'
 
 ];
 public function talla(){

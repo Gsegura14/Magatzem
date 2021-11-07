@@ -1,5 +1,17 @@
 <div>
-    <h1>Crear oferta</h1>
+    <div class="row">
+        <div class="col-8"><h1>Crear oferta</h1></div>
+        <div class="col-4">
+            <a href="{{ Route('stockOferta.excel',$ofertaId) }}">
+            <x-adminlte-button class="float-right mr-2 mt-2" theme="success"  id="btnExcel" icon="fa fa-share-square" />
+            </a>
+            <a href="{{ Route('revision.stockOferta.excel',$ofertaId) }}">
+                <x-adminlte-button class="float-right mr-2 mt-2" theme="success"  id="btnImportExcel" icon="fa fa-download" />
+                </a>
+    </div>
+    </div>
+    
+    
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -26,5 +38,5 @@
             </div>
         </div>
     </div>
-
+    
 </div>
