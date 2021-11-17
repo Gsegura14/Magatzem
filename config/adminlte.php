@@ -419,6 +419,10 @@ return [
                     'text' => 'Preparar Oferta',
                     'url'  => 'admin/campanyas/preparar-oferta',
                 ],
+                [
+                    'text' => 'Listado Campanñas',
+                    'url'  => 'admin/campanias/listado-campanias',
+                ],
                 
                 
                 

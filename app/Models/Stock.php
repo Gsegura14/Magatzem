@@ -17,6 +17,7 @@ class Stock extends Model
                     'pedido',
                     'vendido',
                     'stock',
+                    'reservado',
                     'created_at',
                     'updated_at'
 

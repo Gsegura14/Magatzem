@@ -15,9 +15,6 @@ class AccionesStockOfertas extends Component
 
     public function render()
     {
-
-
-
         return view('livewire.acciones-stock-ofertas');
     }
 
@@ -42,6 +39,7 @@ class AccionesStockOfertas extends Component
             }
         }
         $this->emit('actualizar');
+        $this->emit('actualizarCabecera',$this->ofertaId);
     }
 
     protected function cambiarPrecio($productos)

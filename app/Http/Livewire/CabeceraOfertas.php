@@ -11,16 +11,17 @@ class CabeceraOfertas extends Component
 {
     // Propiedades de la cabecera
     public $unidades,$modelos,$referencias,$ofertaId,$fecha,$cliente;
-  
+    protected $listeners =['actualizarCabecera' => 'completarCabecera'];
     
     public function render()
     {
         $this->completarCabecera($this->ofertaId);
+       
         return view('livewire.cabecera-ofertas');
     }
 
 
-protected function completarCabecera($id){
+public function completarCabecera($id){
 
     CabeceraCampaniaOferta::where('id',$id)
         ->update(
@@ -31,9 +32,9 @@ protected function completarCabecera($id){
             ]
             );
 
+            $this->CargarCabecera($id);
    
-   
-    $this->CargarCabecera($id);
+    
 
 }
 
@@ -54,6 +55,7 @@ protected function CargarCabecera($id){
     protected function cantUnidades(){
         $unidades = StockOferta::where('oferta_id',$this->ofertaId)
         ->sum('stock');
+        
         return $unidades;
      }
     

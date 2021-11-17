@@ -3,17 +3,20 @@
         <div class="card-body">
             <div>
                 <div class="row">
-                        <div class="form-group col-lg-3 col-md-12 col-sm-12 mt-2" wire:ignore>
-                            <label for="selModo">Aplicar:</label>
-                            <x-adminlte-select class="select2" wire:model="selModo" name="selModo">
-                                <option value="">-- Acción --</option>
-                                <option value=1>Descuento %</option>
-                                <option value=2>Precio</option>
-                                <option value="3">Asignar % Stock</option>
-                                <option value="4">Aumentar % Stock</option>
-                                <option value="5">Aumentar cantidad Stock</option>
-                            </x-adminlte-select>
-                        </div>
+                    <div class="form-group col-lg-3 col-md-12 col-sm-12 mt-2" wire:ignore>
+                        <label for="selModo">Aplicar:</label>
+                        <x-adminlte-select class="select2" wire:model="selModo" name="selModo">
+                            <option value="">-- Acción --</option>
+                            <option value="3">Asignar % Stock</option>
+                            <option value="4">Aumentar % Stock</option>
+                            <option value="5">Aumentar cantidad Stock</option>
+                            <option value=1>Descuento %</option>
+                            <option value=2>Precio</option>
+                            
+                            
+                            
+                        </x-adminlte-select>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-2 col-md-12 col-sm-12 mt-2">
@@ -42,83 +45,186 @@
             </div>
         </div>
     </div>
-    @push('js')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+        <div class="mt-2" wire:ignore>
+            <table class="table table-striped " id="productos">
 
-        <script>
-            $(document).ready(function() {
-                $('.select2').select2();
-                $('.select2').on('change', function() {
-                    @this.set('selModo', this.value);
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nº Campaña</th>
+                        <th>Sku</th>
+                        <th>Código</th>
+                        <th>Talla</th>
+                        <th>Pedido</th>
+                        <th>Vendido</th>
+                        <th>Stock</th>
+                        <th>Descripción</th>
+                        <th>Color</th>
+                        <th>Tipo</th>
+                        <th>Marca</th>
+                        <th>Precio venta</th>
+                        <th>Precio oferta</th>
+                        <th>Aceptar</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+</div>
+
+
+        @push('js')
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <script>
+                $(document).ready(function() {
+                    $('.select2').select2();
+                    $('.select2').on('change', function() {
+                        @this.set('selModo', this.value);
+
+                    });
 
                 });
+            </script>
+            <script>
+                $(document).ready(function() {
 
-            });
-        </script>
+                    $('#productos').DataTable({
+                        select: true,
+                        editOnFocus: true,
+                        retrieve: true,
+                        "ajax": "{{ route('datatable.stockoferta', ['ofertaId' => $ofertaId]) }}",
+                        "columns": [{
+                                data: 'id'
+                            },
+                            {
+                                data: 'oferta_id'
+                            },
 
+                            {
+                                data: 'sku'
+                            },
+                            {
+                                data: 'codigo'
+                            },
+                            {
+                                data: 'talla'
+                            },
+                            {
+                                data: 'pedido'
+                            },
+                            {
+                                data: 'vendido'
+                            },
+                            {
+                                data: 'stock'
+                            },
+                            {
+                                data: 'descripcion_corta'
+                            },
+                            {
+                                data: 'color'
+                            },
+                            {
+                                data: 'tipo_producto'
+                            },
+                            {
+                                data: 'nombre_marca'
+                            },
+                            {
+                                data: 'precio_vta'
+                            },
+                            {
+                                data: 'precio_oferta'
+                            },
+                            {
+                                data: 'aceptar',
 
-
-
-
-
-
-
-
-        {{-- <script>
-            document.addEventListener('livewire:load', function() {
-                $('#btnAplicar').on('click', function() {
-                    var modelo = $('#talla').val();
-
-                    if (modelo == "") {
-                        Swal.fire({
-                            title: 'Do you want to save the changes?',
-                            showDenyButton: true,
-                            showCancelButton: true,
-                            confirmButtonText: 'Save',
-                            denyButtonText: `Don't save`,
-                        }).then((result) => {
-                            /* Read more about isConfirmed, isDenied below */
-                            if (result.isConfirmed) {
-                                Swal.fire('Saved!', '', 'success')
-                            } else if (result.isDenied) {
-                                Swal.fire('Changes are not saved', '', 'info')
                             }
-                        })
+                        ],
 
-                    }
+                        "createdRow": function(row, data, index) {
+                            if (data['aceptar'] == 1) {
 
-                });
-            })
-        </script> --}}
+                                $('td', row).css({
+                                    'background-color': '#7ef7c3',
+                                    'color': '#004d24'
 
-        {{-- <script>
-            document.addEventListener('livewire:load', function() {
-                $('#btnAplicar').on('click', function() {
-                   
-                    var modelo = $('#modelo').val();
-                    var color = $('#color').val();
-                    var talla = $('#talla').var();
+                                });
+                                $('td', row).eq(14) == data['ok'];
 
-                    if(modelo == ""){
-                        alert('hola');
-                        Swal.fire({
-                            title: 'Do you want to save the changes?',
-                            showDenyButton: true,
-                            showCancelButton: true,
-                            confirmButtonText: 'Save',
-                            denyButtonText: `Don't save`,
-                        }).then((result) => {
-                            /* Read more about isConfirmed, isDenied below */
-                            if (result.isConfirmed) {
-                                Swal.fire('Saved!', '', 'success')
-                            } else if (result.isDenied) {
-                                Swal.fire('Changes are not saved', '', 'info')
+                            } else {
+                                return 'Revisar';
                             }
-                        })
-                    }
-                });
-            })
-        </script> --}}
+                        }
 
-    @endpush
+                    });
+
+                    $('#btnAplicar').on('click', function() {
+                        $('#productos').DataTable().clear().destroy();
+                        $(function() {
+                            var table = $('#productos').DataTable({
+                                paging: true,
+                                destroy: true,
+                                scrollY: 300,
+                                "ajax": "{{ route('datatable.stockoferta', ['ofertaId' => $ofertaId]) }}",
+                                "columns": [{
+                                        data: 'id'
+                                    },
+                                    {
+                                        data: 'oferta_id'
+                                    },
+
+                                    {
+                                        data: 'sku'
+                                    },
+                                    {
+                                        data: 'codigo'
+                                    },
+                                    {
+                                        data: 'talla'
+                                    },
+                                    {
+                                        data: 'pedido'
+                                    },
+                                    {
+                                        data: 'vendido'
+                                    },
+                                    {
+                                        data: 'stock'
+                                    },
+                                    {
+                                        data: 'descripcion_corta'
+                                    },
+                                    {
+                                        data: 'color'
+                                    },
+                                    {
+                                        data: 'tipo_producto'
+                                    },
+                                    {
+                                        data: 'nombre_marca'
+                                    },
+                                    {
+                                        data: 'precio_vta'
+                                    },
+                                    {
+                                        data: 'precio_oferta'
+                                    },
+                                    {
+                                        data: 'aceptar',
+
+                                    }
+                                ],
+                            });
+
+                        });
+                    })
+
+                });
+            </script>
+
+        @endpush
+    
 </div>
