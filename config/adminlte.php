@@ -397,6 +397,10 @@ return [
                     'url'  => 'admin/pedidos/proveedores',
                 ],
                 [
+                    'text' => 'Entrada de mercancía',
+                    'url'  => 'admin/mercancias/entrada/',
+                ],
+                [
                     'text' => 'Clientes',
                     'url'  => 'admin/pedidos/clientes',
                 ],

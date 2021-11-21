@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\DatatableController;
 use App\Http\Livewire\AccionesStockOfertas;
 use App\Http\Controllers\Admin\cabeceraCampaniaController;
 use App\Http\Controllers\Admin\DatatableCampaniaController;
+use App\Http\Controllers\Admin\EntradamercanciasController;
+use App\Http\Livewire\EntradaMercancias;
 
 Route::get('',[HomeController::class,'index'])->name('admin');
 
@@ -128,3 +130,8 @@ Route::post('campania/procesar/{ofertaId}',[cabeceraCampaniaController::class,'p
 Route::get('campania/ver/{campaniaId}',[cabeceraCampaniaController::class,'show'])->name('campania.show');
 
 Route::get('datatable/stockcampania/{campaniaId}',[DatatableCampaniaController::class,'stockCampania'])->name('datatable.stockcampania');
+Route::get('datatable/pedidoproveedor/{pedidoId}',[EntradaMercancias::class,'dataLineasPedidoProveedor'])->name('datatable.lineasPedidoProveedores');
+
+
+
+Route::get('mercancias/entrada/',[EntradamercanciasController::class,'frmEntrada'])->name('frm.mercancia.entrada');

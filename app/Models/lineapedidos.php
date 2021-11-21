@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class lineapedidos extends Model
 {
     protected $table = 'lineapedidos';
+    protected $fillable = [
+        
+        'recibido'
+    ];
+
     use HasFactory;
 
     public function producto(){

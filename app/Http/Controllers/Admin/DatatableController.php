@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\StockOferta;
 
 class DatatableController extends Controller
@@ -40,4 +41,6 @@ class DatatableController extends Controller
         return datatables()->of($stockofertas)
             ->toJson();
     }
+
+   
 }
