@@ -39,11 +39,6 @@ class RevisionOfertaImport implements ToModel, WithHeadingRow
             return $oferta;
          }
 
-        
-
-
-        // return new StockOferta([
-        //     //
-        // ]);
+    
     }
 }

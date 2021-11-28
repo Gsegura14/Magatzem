@@ -18,6 +18,9 @@
             <a href="{{ route('index.campanias') }}">
                 <x-adminlte-button class="float-right mr-2 mt-2" theme="success" id="btnVolver" icon="fa fa-undo" />
             </a>
+            <a href="{{ route('upload.ped', $campaniaId) }}">
+                <x-adminlte-button class="float-right mr-2 mt-2" theme="primary" id="btnUpdate" icon="fa fa-arrow-up" />
+            </a>
         </div>
     </div>
 
@@ -158,16 +161,16 @@
             ],
 
             "createdRow": function(row, data, index) {
-                            if (data['pedido'] > 0 && data['pedido'] == data['servido']) {
+                if (data['pedido'] > 0 && data['pedido'] == data['servido']) {
 
-                                $('td', row).css({
-                                    'background-color': '#7ef7c3',
-                                    'color': '#004d24'
+                    $('td', row).css({
+                        'background-color': '#7ef7c3',
+                        'color': '#004d24'
 
-                                });
+                    });
 
-                            } 
-                        }
+                }
+            }
 
         });
 

@@ -167,7 +167,7 @@
                             var table = $('#productos').DataTable({
                                 paging: true,
                                 destroy: true,
-                                scrollY: 300,
+                               // scrollY: 300,
                                 "ajax": "{{ route('datatable.stockoferta', ['ofertaId' => $ofertaId]) }}",
                                 "columns": [{
                                         data: 'id'

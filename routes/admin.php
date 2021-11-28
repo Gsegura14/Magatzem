@@ -23,8 +23,10 @@ use App\Http\Controllers\Admin\cabeceraCampaniaController;
 use App\Http\Controllers\Admin\DatatableCampaniaController;
 use App\Http\Controllers\Admin\EntradamercanciasController;
 use App\Http\Livewire\EntradaMercancias;
+use App\Http\Controllers\admin\AccionesCampaniasController;
 
 Route::get('',[HomeController::class,'index'])->name('admin');
+Route::get('/admin/file/{d}{f}',[HomeController::class,'review'])->name('review');
 
 Route::get('clientes',[ClienteController::class,'index'])->name('clientes.index');
 Route::get('cliente/nuevo',[ClienteController::class,'create'])->name('cliente.nuevo');
@@ -135,3 +137,7 @@ Route::get('datatable/pedidoproveedor/{pedidoId}',[EntradaMercancias::class,'dat
 
 
 Route::get('mercancias/entrada/',[EntradamercanciasController::class,'frmEntrada'])->name('frm.mercancia.entrada');
+
+Route::get('campanias/uploadPedido/{campaniaId}',[AccionesCampaniasController::class,'frmimportPed'])->name('upload.ped');
+Route::post('campania/uploadOrden/{campaniaId}',[AccionesCampaniasController::class,'importar'])->name('update.ped.order');
+Route::get('campania/procesar/{campaniaId}',[AccionesCampaniasController::class,'procesar'])->name('campania.procesar');

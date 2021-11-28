@@ -1,5 +1,5 @@
 @extends('admin.index')
-@section('title', 'Mercancia | Entrada Mercancías')
+@section('title', 'Campañas | Procesar Campaña')
 @section('content_header')
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -11,7 +11,7 @@
 @stop
 @section('content')
 <div>
-    @livewire('entrada-mercancias')
+    @livewire('procesar-orden',['campaniaId' => $campaniaId])
 </div>
 
 @stop
