@@ -34,6 +34,7 @@ class ImportOrdersCampania implements ToModel, WithHeadingRow
         $talla_id = $producto['talla_id'];
         $producto_id = $producto['producto_id'];
         $precio = $this->getPrecio($row['unitary_cost_without_vat']);
+        $this->updateEstadoCampania();
 
         return new PedidosCampania([
 
@@ -50,11 +51,17 @@ class ImportOrdersCampania implements ToModel, WithHeadingRow
         ]);
     }
 
-    protected function getCampania($nombreCampania)
+    protected function updateEstadoCampania()
     {
-        $campania = CabeceraCampania::select('id')
-            ->where('nombre_campania', '=', $nombreCampania)
-            ->first();
+        $campania = $this->getCampania($this->campania_id);
+        $campania->update([
+         'estado_id' => 2
+        ]);
+    }
+
+    protected function getCampania($id)
+    {
+        $campania = CabeceraCampania::find($id);
         return $campania;
     }
 

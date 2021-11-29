@@ -5,29 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PedidosCampania extends Model
+class histStocksCampania extends Model
 {
+    use HasFactory;
     use HasFactory;
     protected $fillable = [
         'id',
-        'campania_id',
-        'po_number_id',
         'producto_id',
         'talla_id',
         'sku',
         'codigo',
+        'stock',
         'pedido',
         'servido',
-        'precio_oferta',
-        'n_order',
-        'enviado',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'precio_oferta',
 
 ];
-public function poorders(){
-    return $this->belongsTo('App\Models\PoOrders');
-}
 public function talla(){
 return $this->belongsTo('App\Models\Talla');
 }
@@ -40,5 +35,3 @@ public function cabeceracampania()
     return $this->belongsTo('App\Models\CabeceraCampania');
 }
 }
-
-

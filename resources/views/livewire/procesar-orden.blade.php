@@ -67,22 +67,15 @@
             </div>
             <div class="col-md-2 ">
                 <div class="alert alert-warning h-100 w-100  d-inline-block" role="alert">
-                    <h2 class="font-weight-bold text-center">{{$n_pedidosC}}/{{ $stockCampania }}</h2>
+                    <h2 class="font-weight-bold text-center">{{ $n_pedidosC }}/{{ $stockCampania }}</h2>
                     <p class="text-center"><small>% Vendido</small></p>
                     <input type="hidden" wire:model="percentStockVendido">
-                    <h2 class="font-weight-bold text-center">{{ $percentStockVendido }} %</h2> 
+                    <h2 class="font-weight-bold text-center">{{ $percentStockVendido }} %</h2>
 
                 </div>
 
             </div>
-            {{-- <div class="col-md-2">
-                <div>
-                    <input type="hidden" wire:model="progress">
-                    <x-adminlte-progress theme="navy" value="{{ $progress }}" vertical  with-label/>
 
-                </div>
-
-            </div> --}}
             <div class="col-md-2">
                 <div class="row">
                     <div class="col">
@@ -91,12 +84,18 @@
                         <x-adminlte-button label="Cerrar PO" class="btn-block mt-1 text-center" theme="primary"
                             wire:click="cerrarPO()" />
                         <x-adminlte-button label="Terminar Campaña" class="btn-block mt-1 text-center" theme="primary"
-                            wire:click="estadisticas" />
+                            wire:click="cerrarCampania" />
 
 
 
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mt-2">
+                <x-adminlte-progress theme="success" value="{{ $progress }}" />
+                <input type="hidden" wire:model="progress">
             </div>
         </div>
         <div class="card mt-2">

@@ -38,6 +38,7 @@ class cabeceraCampaniaController extends Controller
             $campania->cant_refs                 = $request->referencias;
             $campania->duracion                  = $request->duracion;
             $campania->percent_faltas            = $request->faltas;
+            $campania->estado                    = 1;
 
             $campania->save();
 

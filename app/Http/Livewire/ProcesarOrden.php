@@ -8,6 +8,9 @@ use App\Models\PedidosCampania;
 use App\Models\PoOrders;
 use App\Models\StockCampania;
 use App\Exports\POExport;
+use App\Models\histPedidosCampania;
+use App\Models\histPoOrders;
+use App\Models\histStocksCampania;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProcesarOrden extends Component
@@ -113,7 +116,18 @@ class ProcesarOrden extends Component
             $nuevoStock = $stockActualProducto - $servido;
 
             $this->updateStock($producto->codigo, $nuevoStock, $pedido, $servido);
+
+            $this->enviarPO();
         }
+    }
+
+    protected function enviarPO()
+    {
+        $Po = PoOrders::find($this->poId)->first();
+        $Po->update([
+            'enviado' => 1
+        ]);
+
     }
 
     protected function actualizarpercentStockVendido()
@@ -170,8 +184,12 @@ class ProcesarOrden extends Component
 
         $this->n_pedidosC = PedidosCampania::where('campania_id', $this->campaniaId)->get()->sum('pedido');
         $this->n_servidosC = PedidosCampania::where('campania_id', $this->campaniaId)->get()->sum('servido');
-
-        $this->porcentajeCampania = number_format(($this->n_servidosC / $this->n_pedidosC * 100), 2, ',', '');
+        if($this->n_pedidosC != 0){
+            $this->porcentajeCampania = number_format(($this->n_servidosC / $this->n_pedidosC * 100), 2, ',', '');
+        }else{
+            $this->porcentajeCampania = 0;
+        }
+       
     }
 
     protected function updateporcentajeFaltasCampania()
@@ -186,8 +204,10 @@ class ProcesarOrden extends Component
         $orden = PedidosCampania::orderBy('n_order', 'desc')
             ->where('campania_id', $this->campaniaId)
             ->first();
-
-        $this->progress = number_format(($orden->n_order / $dias * 100), 0, '', '');
+        if($orden != null){
+            $this->progress = number_format(($orden->n_order / $dias * 100), 0, '', '');
+        }
+        
     }
 
     protected function getCampania($id)
@@ -255,6 +275,25 @@ class ProcesarOrden extends Component
 
     public function cerrarCampania()
     {
+
+
+        // Guardar las cabeceras de los poorders en historial
+            // Eliminar de la tabla poorders
+        $this->guardarPoOrders();
+        $this->guardarPedidosCampania();
+        if($this->revisarPos())
+        {
+            $this->eliminarPos();
+        }
+
+        $this->guardarStockCampania();
+
+        if($this->revisarStocksCampania())
+        {
+            $this->eliminarStocksCampania();
+        }
+        $this->setEstadoCampania(3);
+        return redirect()->route('index.campanias');
         // Guardar los POs en tabla historial POs
             // Eliminar de la tabla pedidoscampania las Pos correspondientes
         // Guardar el Stock en tabla historial Stocks
@@ -262,5 +301,115 @@ class ProcesarOrden extends Component
         // Las cabeceras las dejamos pero tenemos que añadir una columna del estado  de la campaña.
             // sin iniciar,en progreso,cerrada. - Añadimos tabla para gestionar el estado de las campañas
         
+    }
+    protected function setEstadoCampania($estado)
+    {
+        CabeceraCampania::find($this->campaniaId)
+            ->update([
+                'estado_id' => $estado
+            ]);
+    }
+    protected function guardarPoOrders()
+    {
+        $poOrders = PoOrders::where('campania_id',$this->campaniaId)->get();
+        foreach($poOrders as $po)
+        {
+            $histPo = new histPoOrders();
+            $histPo->po_order = $po->po_order;
+            $histPo->enviado = $po->enviado;
+            $histPo->campania_id = $po->campania_id;
+            $histPo->timestamps = $po->timestamps;
+            $histPo-> save();
+
+        }
+    }
+
+    protected function eliminarPos()
+    {
+        $pos = poOrders::where('campania_id',$this->campaniaId)->get();
+        foreach($pos as $po)
+        {
+            $po->delete();
+        }
+    }
+
+    protected function revisarPos()
+    {
+        $hisPoOrders = histPoOrders::where('campania_id',$this->campaniaId)->get();
+        if($hisPoOrders!=null)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    protected function guardarPedidosCampania()
+    {
+        $pedsCampania = PedidosCampania::where('campania_id',$this->campaniaId)->get();
+
+        foreach($pedsCampania as $ped){
+            
+            $histPed = new histPedidosCampania();
+            $histPed->campania_id = $ped->campania_id;
+            //$histPed->po_number_id = null;
+            $histPed->producto_id = $ped->producto_id;
+            $histPed->talla_id = $ped->talla_id;
+            $histPed->sku = $ped->sku;
+            $histPed->codigo = $ped->codigo;
+            $histPed->pedido = $ped->pedido;
+            $histPed->servido = $ped->servido;
+            $histPed->precio_oferta = $ped->precio_oferta;
+            $histPed->n_order = $ped->n_order;
+            $histPed->timestamps = $ped->timestamps;
+            $histPed->save();
+
+        }
+
+    }
+
+    protected function guardarStockCampania()
+    {
+        $productos = StockCampania::where('campania_id',$this->campaniaId)->get();
+        foreach($productos as $pr)
+        {
+            $histpr = new histStocksCampania();
+            $histpr->campania_id    = $pr->campania_id;
+            $histpr->producto_id    = $pr->producto_id;
+            $histpr->talla_id       = $pr->talla_id;
+            $histpr->sku            = $pr->sku;
+            $histpr->codigo         = $pr->codigo;
+            $histpr->stock          = $pr->stock;
+            $histpr->pedido         = $pr->pedido;
+            $histpr->servido        = $pr->servido;
+            $histpr->precio_oferta  = $pr->precio_oferta;
+            $histpr->timestamps     = $pr->timestamps;
+
+            $histpr->save();
+
+
+        }
+    }
+
+    protected function revisarStocksCampania()
+    {
+        $histStock = histStocksCampania::where('campania_id',$this->campaniaId)->get();
+        if($histStock!=null)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    protected function eliminarStocksCampania()
+    {
+        $productos = StockCampania::where('campania_id',$this->campaniaId)->get();
+
+        foreach($productos as $pr)
+        {
+            $pr->delete();
+        }
+
     }
 }

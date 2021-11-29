@@ -141,3 +141,4 @@ Route::get('mercancias/entrada/',[EntradamercanciasController::class,'frmEntrada
 Route::get('campanias/uploadPedido/{campaniaId}',[AccionesCampaniasController::class,'frmimportPed'])->name('upload.ped');
 Route::post('campania/uploadOrden/{campaniaId}',[AccionesCampaniasController::class,'importar'])->name('update.ped.order');
 Route::get('campania/procesar/{campaniaId}',[AccionesCampaniasController::class,'procesar'])->name('campania.procesar');
+Route::get('campania/estadisticas/{campaniaId}',[AccionesCampaniasController::class,'estadisticas'])->name('campania.estadisticas');

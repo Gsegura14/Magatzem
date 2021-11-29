@@ -44,7 +44,13 @@
     </thead> 
     <tbody>
     @foreach ($campanias as $campania)
-        <tr>
+    @if($campania->estado_id == 3)
+            <tr class="bg-success">
+
+        
+    @else
+            <tr>
+    @endif
             <td>{{$campania->id}}</td>
             <td>{{$campania->cliente['nombre']}}</td>
             <td>{{$campania->nombre_campania}}</td>
@@ -54,7 +60,11 @@
             <td>{{$campania->cant_modelos}}</td>
             <td>{{$campania->cant_refs}}</td>
             <td>
-                  <a href="{{route('campania.show',$campania->id)}}"><x-adminlte-button class="btn btn-flat" type="submit" theme="primary" icon="fas fa-eye"></x-adminlte-button></a>  
+                @if($campania->estado_id == 3)
+                <a href="{{route('campania.estadisticas',$campania->id)}}"><x-adminlte-button class="btn btn-flat" type="submit" theme="danger" icon="fas fa-eye"></x-adminlte-button></a>  
+                @else
+                  <a href="{{route('campania.show',$campania->id)}}"><x-adminlte-button class="btn" type="submit" theme="primary" icon="fas fa-eye"></x-adminlte-button></a>  
+                  @endif 
             </td>
             {{-- <td>
                 <form action="{{route('delete.oferta',$oferta->id)}}" method="POST">

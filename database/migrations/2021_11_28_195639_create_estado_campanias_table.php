@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePoOrdersTable extends Migration
+class CreateEstadoCampaniasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class CreatePoOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('po_orders', function (Blueprint $table) {
+        Schema::create('estado_campanias', function (Blueprint $table) {
             $table->id();
-            $table->string('po_order');
-            $table->unsignedBigInteger('campania_id');
-            $table->foreign('campania_id')
-               ->references('id')
-               ->on('cabecera_campanias');
-            
-            
+            $table->string('estado');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ class CreatePoOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('po_orders');
+        Schema::dropIfExists('estado_campanias');
     }
 }

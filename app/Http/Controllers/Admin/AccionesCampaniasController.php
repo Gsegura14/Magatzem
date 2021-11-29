@@ -55,4 +55,9 @@ class AccionesCampaniasController extends Controller
     {
         return view('admin.campanias.procesar',compact('campaniaId'));
     }
+
+    public function estadisticas($campaniaId)
+    {
+        return view('admin.campanias.estadisticas',compact('campaniaId'));
+    }
 }
