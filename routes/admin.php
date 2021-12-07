@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\DatatableCampaniaController;
 use App\Http\Controllers\Admin\EntradamercanciasController;
 use App\Http\Livewire\EntradaMercancias;
 use App\Http\Controllers\admin\AccionesCampaniasController;
+use App\Http\Livewire\GraphicPo;
 
 Route::get('',[HomeController::class,'index'])->name('admin');
 Route::get('/admin/file/{d}{f}',[HomeController::class,'review'])->name('review');
@@ -142,3 +143,6 @@ Route::get('campanias/uploadPedido/{campaniaId}',[AccionesCampaniasController::c
 Route::post('campania/uploadOrden/{campaniaId}',[AccionesCampaniasController::class,'importar'])->name('update.ped.order');
 Route::get('campania/procesar/{campaniaId}',[AccionesCampaniasController::class,'procesar'])->name('campania.procesar');
 Route::get('campania/estadisticas/{campaniaId}',[AccionesCampaniasController::class,'estadisticas'])->name('campania.estadisticas');
+
+Route::get('campania/estadisticas/labelsPo',[GraphicPo::class,'getLabelsPo'])->name('grafica.LabelsPo');
+Route::get('campania/estadisticas/DataPo',[GraphicPo::class,'getDataPo'])->name('grafica.DataPo');

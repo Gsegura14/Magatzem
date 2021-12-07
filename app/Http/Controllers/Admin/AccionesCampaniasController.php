@@ -26,7 +26,6 @@ class AccionesCampaniasController extends Controller
         $PO_order_id = $PO_order->id;
         $n_orden = $this->getNumeroOrden($campaniaId);
         Excel::import(new ImportOrdersCampania($campaniaId, $PO_order_id, $n_orden), $archivo);
-       // config(['Excel.import.startRow' => 24]);
         return redirect()->route('campania.procesar',$campaniaId);
     }
     protected function crearPo($order,$campaniaId)
