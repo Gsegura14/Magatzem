@@ -79,6 +79,7 @@
             <div class="col-md-2">
                 <div class="row">
                     <div class="col">
+                        <a href="{{ route('upload.ped',$campaniaId) }}"><x-adminlte-button label="Subir PO" class="btn-block mt-1 text-center" theme="warning" /></a>
                         <x-adminlte-button label="Packing-List" class="btn-block mt-1 text-center" theme="success"
                             wire:click="exportXls()" />
                         <x-adminlte-button label="Cerrar PO" class="btn-block mt-1 text-center" theme="primary"

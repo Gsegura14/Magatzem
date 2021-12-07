@@ -11,6 +11,7 @@ use App\Exports\POExport;
 use App\Models\histPedidosCampania;
 use App\Models\histPoOrders;
 use App\Models\histStocksCampania;
+use App\Models\Stock;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProcesarOrden extends Component
@@ -116,7 +117,7 @@ class ProcesarOrden extends Component
             $nuevoStock = $stockActualProducto - $servido;
 
             $this->updateStock($producto->codigo, $nuevoStock, $pedido, $servido);
-
+            $this->setReservado($producto);
             $this->enviarPO();
         }
     }
@@ -153,6 +154,7 @@ class ProcesarOrden extends Component
         ]);
 
         $this->setEnviado($producto);
+        
     }
 
     protected function setEnviado(StockCampania $producto)
@@ -166,6 +168,19 @@ class ProcesarOrden extends Component
                 'enviado' => 1
             ]);
         }
+    }
+
+    protected function setReservado(PedidosCampania $producto)
+    {
+        
+        $servido = $producto->servido;
+        $productoStock = Stock::where('codigo',$producto->codigo)->first();
+        $reservado = $productoStock->reservado;
+        $reservado = $reservado - $servido;
+        $productoStock->update([
+            'reservado' => $reservado
+        ]);
+
     }
 
     protected function updateLabel()
@@ -289,7 +304,8 @@ class ProcesarOrden extends Component
         $this->guardarStockCampania();
 
         if($this->revisarStocksCampania())
-        {
+        {   
+            $this->liberarStockCampania();
             $this->eliminarStocksCampania();
         }
         $this->setEstadoCampania(3);
@@ -352,7 +368,6 @@ class ProcesarOrden extends Component
             
             $histPed = new histPedidosCampania();
             $histPed->campania_id = $ped->campania_id;
-            //$histPed->po_number_id = null;
             $histPed->producto_id = $ped->producto_id;
             $histPed->talla_id = $ped->talla_id;
             $histPed->sku = $ped->sku;
@@ -400,6 +415,25 @@ class ProcesarOrden extends Component
         }else{
             return false;
         }
+    }
+
+    protected function liberarStockCampania()
+
+    {
+        $stocks = Stock::all();
+
+        foreach($stocks as $stock)
+        {
+            $reservado = $stock->reservado;
+            $disponible = $stock->stock;
+            $disponible = $disponible + $reservado;
+
+            $stock->update([
+                'stock' => $disponible,
+                'reservado' => 0
+            ]);
+        }
+
     }
 
     protected function eliminarStocksCampania()

@@ -44,7 +44,8 @@
                     <th>Código</th>
                     <th>Pedido</th>
                     <th>Vendido</th>
-                    <th>Stock</th>
+                    <th>Reservado</th>
+                    <th>Stock Disponible</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,6 +58,7 @@
                     <td>{{$stock->codigo}}</td>
                     <td>{{$stock->pedido}}</td>
                     <td>{{$stock->vendido}}</td>
+                    <td>{{$stock->reservado}}</td>
                     <td>{{$stock->stock}}</td>
                 </tr>
                 @endforeach
@@ -66,19 +68,6 @@
 
     </div>
 </div>
-{{-- <div class="row">
-    <div class="col-2">
-        <form action="{{route('productos.nuevo')}}" method="GET">
-            <x-adminlte-button class="btn-flat" type="submit" label="Nuevo" theme="success" icon="fas fa-lg fa-save" />
-            @csrf
-        </form>
-    </div>
-    <div class="col-2">
-        <form action="">
-            <x-adminlte-button class="btn-flat" label="PDF" theme="danger" icon="fa fa-file-pdf" />
-        </form>
-    </div>
-</div> --}}
 
 
 @endsection
