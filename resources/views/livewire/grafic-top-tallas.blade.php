@@ -27,7 +27,7 @@ console.log(datosTallas.length);
         var ctx2 = document.getElementById('graficTallas').getContext('2d');
 
         var graficaTallas = new Chart(ctx2, {
-            type: 'doughnut ',
+            type: 'doughnut',
 
             data: {
                 labels: etiTallas,
