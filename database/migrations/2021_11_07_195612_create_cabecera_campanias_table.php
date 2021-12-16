@@ -27,7 +27,10 @@ class CreateCabeceraCampaniasTable extends Migration
             $table->integer('cant_refs')->nullable();
             $table->integer('duracion')->default(7);
             $table->double('percent_faltas',4,2)->default(1);
-            $table->boolean('estado')->default(0);
+            $table->unsignedBigInteger('estado_id')->nullable();
+            $table->foreign('estado_id')
+                ->references('id')
+                ->on('estado_campanias');
 
             
             $table->timestamps();

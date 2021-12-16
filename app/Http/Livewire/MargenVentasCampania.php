@@ -23,7 +23,7 @@ class MargenVentasCampania extends Component
         $pcoste = $this->getCosteCampania();
         $venta = $this->getVentaCampania();
         $mar = $venta-$pcoste;
-        return $mar;
+        return number_format($mar,2,'.','');
     }
 
     protected function getCosteCampania()

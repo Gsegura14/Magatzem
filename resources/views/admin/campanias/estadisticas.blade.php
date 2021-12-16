@@ -1,5 +1,5 @@
 @extends('admin.index')
-@section('title', 'Campañas | Procesar Campaña')
+@section('title', 'Campañas | Estadísticas Campaña')
 @section('content_header')
 @section('css')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -11,11 +11,9 @@
 @stop
 @section('content')
     <div>@livewire('titulo-estadisticas-campania', ['campaniaId' => $campaniaId])</div>
-    {{-- <div>
-    @livewire('procesar-orden',['campaniaId' => $campaniaId])
-</div> --}}
+
     <div class="container">
-        <div class="row rounded ">
+        <div class="row">
             <div class="col-md-3 col-sm-12 text-center bg-white">@livewire('label-vendidos', ['campaniaId' =>
                 $campaniaId])</canvas></div>
             <div class="col-md-3 col-sm-12 text-center bg-white">@livewire('label-faltas', ['campaniaId' =>

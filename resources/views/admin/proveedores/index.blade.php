@@ -82,13 +82,6 @@
 
         </div>
     </div>
-    <form action="{{ route('proveedor.nuevo') }}" method="GET">
-        <x-adminlte-button class="btn-flat" type="submit" label="Nuevo" theme="success" icon="fa fa-user" />
-        @csrf
-    </form>
-
-
-
 
 @stop
 

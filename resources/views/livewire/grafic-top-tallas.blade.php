@@ -12,7 +12,7 @@
 console.log(datos);
     var etiTallas = [];
     var dataSizes = [];
-console.log(datosTallas.length);
+//console.log(datosTallas.length);
     for(var i = 0;i < datosTallas.length; i++)
     {   
         

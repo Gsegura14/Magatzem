@@ -23,11 +23,11 @@ use App\Http\Controllers\Admin\cabeceraCampaniaController;
 use App\Http\Controllers\Admin\DatatableCampaniaController;
 use App\Http\Controllers\Admin\EntradamercanciasController;
 use App\Http\Livewire\EntradaMercancias;
-use App\Http\Controllers\admin\AccionesCampaniasController;
+use App\Http\Controllers\Admin\AccionesCampaniasController;
 use App\Http\Livewire\GraphicPo;
+use App\Http\Controllers\Admin\EstadosController;
 
 Route::get('',[HomeController::class,'index'])->name('admin');
-Route::get('/admin/file/{d}{f}',[HomeController::class,'review'])->name('review');
 
 Route::get('clientes',[ClienteController::class,'index'])->name('clientes.index');
 Route::get('cliente/nuevo',[ClienteController::class,'create'])->name('cliente.nuevo');
@@ -146,3 +146,10 @@ Route::get('campania/estadisticas/{campaniaId}',[AccionesCampaniasController::cl
 
 Route::get('campania/estadisticas/labelsPo',[GraphicPo::class,'getLabelsPo'])->name('grafica.LabelsPo');
 Route::get('campania/estadisticas/DataPo',[GraphicPo::class,'getDataPo'])->name('grafica.DataPo');
+
+Route::get('config/estados',[EstadosController::class,'index'])->name('estados.index');
+Route::get('config/estados/delete/{estado}',[EstadosController::class,'destroy'])->name('estados.destroy');
+Route::get('config/estados/show/{estado}',[EstadosController::class,'show'])->name('estados.show');
+Route::post('config/estados/store',[EstadosController::class,'store'])->name('estados.store');
+Route::put('config/estados/update/{estado}',[EstadosController::class,'update'])->name('estados.update');
+Route::get('config/estados/create',[EstadosController::class,'create'])->name('estados.create');

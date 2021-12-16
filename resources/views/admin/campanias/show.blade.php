@@ -19,7 +19,7 @@
                 <x-adminlte-button class="float-right mr-2 mt-2" theme="success" id="btnVolver" icon="fa fa-undo" />
             </a>
             <a href="{{ route('upload.ped', $campaniaId) }}">
-                <x-adminlte-button class="float-right mr-2 mt-2" theme="primary" id="btnUpdate" icon="fa fa-arrow-up" />
+                <x-adminlte-button class="float-right mr-2 mt-2" theme="primary" id="btnUpdate" icon="fa fa-upload" />
             </a>
         </div>
     </div>

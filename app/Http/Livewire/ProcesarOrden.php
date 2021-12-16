@@ -38,6 +38,7 @@ class ProcesarOrden extends Component
         $this->updateporcentajeFaltasCampania();
         $this->updateProgress();
         $this->actualizarpercentStockVendido();
+        $this->setEstadoCampania(2);
         $lineas = $this->getLineas($this->poId);
         return view('livewire.procesar-orden', compact('campania', 'ordenes', 'lineas'));
     }
@@ -124,7 +125,7 @@ class ProcesarOrden extends Component
 
     protected function enviarPO()
     {
-        $Po = PoOrders::find($this->poId)->first();
+        $Po = PoOrders::find($this->poId);
         $Po->update([
             'enviado' => 1
         ]);

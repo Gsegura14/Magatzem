@@ -14,7 +14,7 @@ class codigosController extends Controller
 
    public function generar(){
 
-        $productos = Stock::where('codigo',null)->get();
+        $productos = Stock::where('codigo',0)->get();
         
         foreach($productos as $producto){
             echo $producto->sku;
@@ -23,7 +23,6 @@ class codigosController extends Controller
 
                 $codProducto = $this->crearCodProducto();
                 $existe = Codigosproducto::where('Codigo',$codProducto)->get();
-                echo count($existe);
                 if(count($existe)==0){
                     $this->guardarCodigo($codProducto);
                     $ok = true;

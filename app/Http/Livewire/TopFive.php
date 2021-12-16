@@ -15,13 +15,14 @@ class TopFive extends Component
     }
 
 
-public function getTopFive()
+protected function getTopFive()
 {
     $top = histPedidosCampania::where('campania_id',$this->campaniaId)
             ->join('productos','hist_pedidos_campanias.producto_id','productos.id')
             ->groupBy('productos.modelo')
             ->selectRaw("productos.modelo as modelo")
             ->selectRaw("sum(hist_pedidos_campanias.servido) as suma")
+            ->orderBy('suma','desc')
             ->take(5)
             ->get();
     return $top;

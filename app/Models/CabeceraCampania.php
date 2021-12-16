@@ -16,6 +16,6 @@ class CabeceraCampania extends Model
     }
 
     public function estado(){
-        return $this->hasOne('App\Models\EstadoCampania');
+        return $this->belongsTo('App\Models\EstadoCampania');
     }
 }

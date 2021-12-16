@@ -38,8 +38,8 @@
             <th>Unidades</th>
             <th>Modelos</th>
             <th>Referencias</th>
+            <th>Estado</th>
             <th></th>
-            {{-- <th></th> --}}
         </tr>
     </thead> 
     <tbody>
@@ -59,6 +59,7 @@
             <td>{{$campania->cantidad_unidades}}</td>
             <td>{{$campania->cant_modelos}}</td>
             <td>{{$campania->cant_refs}}</td>
+            <td>{{$campania->estado['estado']}}</td>
             <td>
                 @if($campania->estado_id == 3)
                 <a href="{{route('campania.estadisticas',$campania->id)}}"><x-adminlte-button class="btn btn-flat" type="submit" theme="danger" icon="fas fa-eye"></x-adminlte-button></a>  
@@ -66,13 +67,6 @@
                   <a href="{{route('campania.show',$campania->id)}}"><x-adminlte-button class="btn" type="submit" theme="primary" icon="fas fa-eye"></x-adminlte-button></a>  
                   @endif 
             </td>
-            {{-- <td>
-                <form action="{{route('delete.oferta',$oferta->id)}}" method="POST">
-                    <x-adminlte-button class="btn-flat" type="submit" theme="danger" icon="fas fa-trash">
-                    </x-adminlte-button>
-                    @method('delete') @csrf
-                </form>
-            </td> --}}
         </tr>
     @endforeach
 </tbody>   

@@ -11,7 +11,5 @@ class HomeController extends Controller
         return view ('admin.index');
     }
 
-    public function review($d,$f){
-        return view('admin.index',compact('d','f'));
-    }
+ 
 }
