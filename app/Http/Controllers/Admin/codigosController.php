@@ -14,7 +14,7 @@ class codigosController extends Controller
 
    public function generar(){
 
-        $productos = Stock::where('codigo',0)->get();
+        $productos = Stock::where('codigo','')->get();
         
         foreach($productos as $producto){
             echo $producto->sku;
