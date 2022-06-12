@@ -46,7 +46,7 @@ class StockController extends Controller
             $combinacion->talla_id      = $talla;
             $combinacion->sku           = $producto->modelo . '-' . $producto->color . '-' . $numeroTalla->talla;
             $combinacion->stock         = $stock;
-            $combinacion->codigo        = null;
+            $combinacion->codigo        = "";
             $combinacion->pedido        = 0;
             $combinacion->vendido       = 0;
 

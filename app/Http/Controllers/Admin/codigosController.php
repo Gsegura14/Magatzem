@@ -17,7 +17,7 @@ class codigosController extends Controller
         $productos = Stock::where('codigo',0)->get();
         
         foreach($productos as $producto){
-            echo $producto->sku;
+          //  echo $producto->sku;
             $ok = false;
             while($ok==false){
 
