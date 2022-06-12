@@ -37,15 +37,6 @@ class ProductoController extends Controller
         $imagenes = Imagen::all();
         $stockProducto = Stock::select('talla_id')->where('producto_id', $producto->id)->get();
 
-
-        // $array = json_decode( json_encode( $object ), true );
-
-        //echo($stockProducto);
-
-        // $todastallas = Talla::all()->value('id')->get();
-
-
-
         return view('admin.productos.verProducto', compact('producto', 'tipos', 'marcas', 'imagenes', 'tallas', 'stockProducto'));
     }
 
